@@ -18,11 +18,6 @@ abstract class Abstract_Llm_Agent {
 
 	protected array $tools = array();
 
-	public function __construct( array $actions = array(), $filters = array() ) {
-		$this->actions = $actions;
-		$this->filters = $filters;
-	}
-
 	abstract public function instructions(): string;
 
 	public function actions(): array {

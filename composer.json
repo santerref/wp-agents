@@ -19,12 +19,18 @@
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.10",
     "wp-coding-standards/wpcs": "^3.0",
-    "phpcompatibility/phpcompatibility-wp": "^2.0"
+    "phpcompatibility/phpcompatibility-wp": "^2.0",
+    "pestphp/pest": "^4.1"
   },
   "autoload": {
     "files": [
       "autoload.php"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
   },
   "scripts": {
     "lint": [
@@ -32,6 +38,9 @@
     ],
     "lint:fix": [
       "phpcbf --standard=phpcs.xml.dist"
+    ],
+    "test": [
+      "pest"
     ]
   },
   "minimum-stability": "stable",
@@ -39,7 +48,8 @@
   "config": {
     "allow-plugins": {
       "php-http/discovery": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "pestphp/pest-plugin": true
     }
   }
 }

@@ -35,8 +35,8 @@ add_action(
 
 			if ( ! function_exists( 'wp_agents_register' ) ) {
 
-				function wp_agents_register( string $name, string $agent_class, array $actions = array(), $filters = array() ) {
-					\Wp_Agents\Services\Agent_Manager::register( $name, new $agent_class( $actions, $filters ) );
+				function wp_agents_register( string $name, string $agent_class ) {
+					\Wp_Agents\Services\Agent_Manager::register( $name, new $agent_class() );
 				}
 
 			}
@@ -47,7 +47,7 @@ add_action(
 					\Wp_Agents\Services\Input_Manager::register( $name, $input_class );
 				}
 
-				require_once __DIR__ . '/inputs.php';
+				require_once __DIR__ . '/inc/inputs.php';
 
 			}
 
@@ -57,7 +57,7 @@ add_action(
 					\Wp_Agents\Services\Provider_Manager::register( $name, $callback );
 				}
 
-				require_once __DIR__ . '/providers.php';
+				require_once __DIR__ . '/inc/providers.php';
 
 			}
 
