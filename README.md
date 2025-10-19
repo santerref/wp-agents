@@ -2,6 +2,8 @@
 
 Build autonomous, hook-driven agents for WordPress — automate tasks and add LLM intelligence with clean, developer-first architecture.
 
+📣 The project is open to contributions. Developers are invited to test, improve, and expand the framework as it evolves.
+
 ## Key Features
 
 - **Providers:** Define and manage LLM providers (e.g., OpenAI, Anthropic) through a unified API for completions and structured outputs.
