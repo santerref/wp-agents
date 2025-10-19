@@ -35,3 +35,4 @@ https://github.com/santerref/wp-agents-demo
 - **Memory:** Implement persistent memory to maintain context across conversations and enable long-running sessions.
 - **Tests:** Expand and complete Pest test coverage for agents, tools, and provider logic.
 - **Providers:** Add more LLM providers and improve compatibility with third-party APIs.
+- **RAG:** Integrate Retrieval-Augmented Generation to allow agents to query custom datasets, documents, or WordPress content for more context-aware responses. 
