@@ -1,0 +1,614 @@
+[2025-10-19 21:18:14] debug: [
+    "Category_Lookup_Tool",
+    "Tag_Lookup_Tool"
+]
+[2025-10-19 21:18:14] debug: {
+    "id": "chatcmpl-CSV53IZQ2qlnwtmcZNTm74rau4PHh",
+    "object": "chat.completion",
+    "created": 1760908693,
+    "model": "gpt-4o-mini-2024-07-18",
+    "systemFingerprint": "fp_560af6e559",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": null,
+                "annotations": [],
+                "toolCalls": [
+                    {
+                        "id": "call_qyA2HDQhM0Cu0BcuZFAFKnYg",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_category",
+                            "arguments": "{\"name\": \"Travel\"}"
+                        }
+                    },
+                    {
+                        "id": "call_8qbBI1uyBbiRa3rTSOGItfaD",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_tags",
+                            "arguments": "{\"names\": [\"Asia\", \"Cultural Exploration\", \"Food and Travel\", \"Spirituality\", \"Adventure\"]}"
+                        }
+                    }
+                ],
+                "functionCall": null,
+                "audio": null
+            },
+            "logprobs": null,
+            "finishReason": "tool_calls"
+        }
+    ],
+    "usage": {
+        "promptTokens": 550,
+        "completionTokens": 63,
+        "totalTokens": 613,
+        "promptTokensDetails": {
+            "audioTokens": 0,
+            "cachedTokens": 0
+        },
+        "completionTokensDetails": {
+            "audioTokens": 0,
+            "reasoningTokens": 0,
+            "acceptedPredictionTokens": 0,
+            "rejectedPredictionTokens": 0
+        }
+    }
+}
+[2025-10-19 21:18:14] debug: Array
+(
+    [name] => Travel
+)
+
+[2025-10-19 21:18:14] debug: Array
+(
+    [names] => Array
+        (
+            [0] => Asia
+            [1] => Cultural Exploration
+            [2] => Food and Travel
+            [3] => Spirituality
+            [4] => Adventure
+        )
+
+)
+
+[2025-10-19 21:19:15] debug: [
+    "Category_Lookup_Tool",
+    "Tag_Lookup_Tool"
+]
+[2025-10-19 21:19:15] debug: {
+    "id": "chatcmpl-CSV62oVVgFeA4D9J1PsFvBVnPb4rn",
+    "object": "chat.completion",
+    "created": 1760908754,
+    "model": "gpt-4o-mini-2024-07-18",
+    "systemFingerprint": "fp_560af6e559",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": null,
+                "annotations": [],
+                "toolCalls": [
+                    {
+                        "id": "call_zh7HuG4aJAaXBzPxOQQFBiIx",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_category",
+                            "arguments": "{\"name\": \"Travel\"}"
+                        }
+                    },
+                    {
+                        "id": "call_eO7DGBpnOrwpXHwCOEKHBuM0",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_tags",
+                            "arguments": "{\"names\": [\"Asia\", \"Culture\", \"Food\", \"Travel\", \"Adventure\"]}"
+                        }
+                    }
+                ],
+                "functionCall": null,
+                "audio": null
+            },
+            "logprobs": null,
+            "finishReason": "tool_calls"
+        }
+    ],
+    "usage": {
+        "promptTokens": 550,
+        "completionTokens": 57,
+        "totalTokens": 607,
+        "promptTokensDetails": {
+            "audioTokens": 0,
+            "cachedTokens": 0
+        },
+        "completionTokensDetails": {
+            "audioTokens": 0,
+            "reasoningTokens": 0,
+            "acceptedPredictionTokens": 0,
+            "rejectedPredictionTokens": 0
+        }
+    }
+}
+[2025-10-19 21:19:15] debug: Array
+(
+    [term_id] => 3
+)
+
+[2025-10-19 21:19:15] debug: Array
+(
+    [term_ids] => Array
+        (
+            [0] => 4
+            [1] => 5
+            [2] => 6
+            [3] => 7
+            [4] => 8
+        )
+
+)
+
+[2025-10-19 21:19:34] debug: [
+    "Category_Lookup_Tool",
+    "Tag_Lookup_Tool"
+]
+[2025-10-19 21:19:34] debug: {
+    "id": "chatcmpl-CSV6MaftyDwd8y99WyURblr84XEB3",
+    "object": "chat.completion",
+    "created": 1760908774,
+    "model": "gpt-4o-mini-2024-07-18",
+    "systemFingerprint": "fp_560af6e559",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": null,
+                "annotations": [],
+                "toolCalls": [
+                    {
+                        "id": "call_udrAtmpbBTZNmIvbKqigwE7L",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_category",
+                            "arguments": "{\"name\": \"Travel\"}"
+                        }
+                    },
+                    {
+                        "id": "call_J3H47c7yKGwHCiIgdPNySod2",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_tags",
+                            "arguments": "{\"names\": [\"Asia\", \"Culture\", \"Cuisine\", \"Travel Experience\", \"Spirituality\"]}"
+                        }
+                    }
+                ],
+                "functionCall": null,
+                "audio": null
+            },
+            "logprobs": null,
+            "finishReason": "tool_calls"
+        }
+    ],
+    "usage": {
+        "promptTokens": 550,
+        "completionTokens": 60,
+        "totalTokens": 610,
+        "promptTokensDetails": {
+            "audioTokens": 0,
+            "cachedTokens": 0
+        },
+        "completionTokensDetails": {
+            "audioTokens": 0,
+            "reasoningTokens": 0,
+            "acceptedPredictionTokens": 0,
+            "rejectedPredictionTokens": 0
+        }
+    }
+}
+[2025-10-19 21:19:34] debug: {"term_id":3}
+[2025-10-19 21:19:34] debug: {"term_ids":[4,5,12,13,11]}
+[2025-10-19 21:20:00] debug: [
+    "Category_Lookup_Tool",
+    "Tag_Lookup_Tool"
+]
+[2025-10-19 21:20:00] debug: {
+    "id": "chatcmpl-CSV6lAcGwXaXl57cXDWQDMif6Yljj",
+    "object": "chat.completion",
+    "created": 1760908799,
+    "model": "gpt-4o-mini-2024-07-18",
+    "systemFingerprint": "fp_560af6e559",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": null,
+                "annotations": [],
+                "toolCalls": [
+                    {
+                        "id": "call_wOZ89pXeKOs8Klc0OBa2EscV",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_category",
+                            "arguments": "{\"name\": \"Travel\"}"
+                        }
+                    },
+                    {
+                        "id": "call_85rfv1Gi2loi5Ak6WZ6TaXe2",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_tags",
+                            "arguments": "{\"names\": [\"Asia\", \"Culture\", \"Food\", \"Travel\", \"Exploration\"]}"
+                        }
+                    }
+                ],
+                "functionCall": null,
+                "audio": null
+            },
+            "logprobs": null,
+            "finishReason": "tool_calls"
+        }
+    ],
+    "usage": {
+        "promptTokens": 550,
+        "completionTokens": 58,
+        "totalTokens": 608,
+        "promptTokensDetails": {
+            "audioTokens": 0,
+            "cachedTokens": 0
+        },
+        "completionTokensDetails": {
+            "audioTokens": 0,
+            "reasoningTokens": 0,
+            "acceptedPredictionTokens": 0,
+            "rejectedPredictionTokens": 0
+        }
+    }
+}
+[2025-10-19 21:20:00] debug: Array
+(
+    [0] => Array
+        (
+            [role] => system
+            [content] => You are a WordPress editorial AI assistant. Analyze the post content and assign the most relevant category and tags. If the category and tags are already relevant enough, do not add extra. You can call tools to create them if missing. Return only JSON in this exact format: {"category": "Travel", "tags": ["Thailand", "Beaches", "Vacation"]}.
+        )
+
+    [1] => Array
+        (
+            [role] => user
+            [content] => Post title: Discovering Asia: A Journey Through Culture, Flavor, and Contrast
+
+Post content: <p data-start="80" data-end="457">Traveling across Asia is like stepping into a living mosaic of color, tradition, and modern energy. From the neon-lit streets of Tokyo to the serene rice terraces of northern Vietnam, every country reveals a unique rhythm that pulls you deeper into its story. The sheer diversity of languages, landscapes, and lifestyles makes Asia a destination that never feels predictable.</p>
+<p data-start="459" data-end="919">One of the most rewarding parts of exploring Asia is the food — an ever-changing adventure in itself. Whether it’s steaming bowls of pho in Hanoi, sizzling street skewers in Bangkok, or delicate sushi in Kyoto, each meal is an expression of local history and creativity. Food markets are often the best introduction to a new city’s character, blending the scents of spices, grilled seafood, and fresh herbs with the hum of conversation and motorbike engines.</p>
+<p data-start="921" data-end="1318">Beyond its urban chaos lies a continent of calm and spirituality. From Buddhist temples in Cambodia to the quiet mountain monasteries of Nepal, Asia invites reflection as much as discovery. Many travelers find that the deeper they venture off the tourist path — into small villages or forested trails — the more they connect with the heart of local life, where hospitality is humble yet genuine.</p>
+<p data-start="1320" data-end="1715" data-is-last-node="" data-is-only-node="">Asia is not just a destination but a transformation. Every border crossed shifts your perspective — from the futuristic skylines of Singapore to the ancient ruins of Angkor Wat. You return home not just with photographs, but with a different sense of time, beauty, and balance — the quiet realization that the world is vast, and every journey through it teaches you a little more about yourself.</p>
+
+Existing category: Uncategorized
+Existing tags: none
+        )
+
+    [2] => OpenAI\Responses\Chat\CreateResponseMessage Object
+        (
+            [role] => assistant
+            [content] => 
+            [annotations] => Array
+                (
+                )
+
+            [toolCalls] => Array
+                (
+                    [0] => OpenAI\Responses\Chat\CreateResponseToolCall Object
+                        (
+                            [id] => call_wOZ89pXeKOs8Klc0OBa2EscV
+                            [type] => function
+                            [function] => OpenAI\Responses\Chat\CreateResponseToolCallFunction Object
+                                (
+                                    [name] => find_or_create_category
+                                    [arguments] => {"name": "Travel"}
+                                )
+
+                        )
+
+                    [1] => OpenAI\Responses\Chat\CreateResponseToolCall Object
+                        (
+                            [id] => call_85rfv1Gi2loi5Ak6WZ6TaXe2
+                            [type] => function
+                            [function] => OpenAI\Responses\Chat\CreateResponseToolCallFunction Object
+                                (
+                                    [name] => find_or_create_tags
+                                    [arguments] => {"names": ["Asia", "Culture", "Food", "Travel", "Exploration"]}
+                                )
+
+                        )
+
+                )
+
+            [functionCall] => 
+            [audio] => 
+        )
+
+    [3] => Array
+        (
+            [role] => tool
+            [tool_call_id] => call_wOZ89pXeKOs8Klc0OBa2EscV
+            [content] => {"term_id":3}
+        )
+
+)
+
+[2025-10-19 21:20:00] debug: Array
+(
+    [0] => Array
+        (
+            [role] => system
+            [content] => You are a WordPress editorial AI assistant. Analyze the post content and assign the most relevant category and tags. If the category and tags are already relevant enough, do not add extra. You can call tools to create them if missing. Return only JSON in this exact format: {"category": "Travel", "tags": ["Thailand", "Beaches", "Vacation"]}.
+        )
+
+    [1] => Array
+        (
+            [role] => user
+            [content] => Post title: Discovering Asia: A Journey Through Culture, Flavor, and Contrast
+
+Post content: <p data-start="80" data-end="457">Traveling across Asia is like stepping into a living mosaic of color, tradition, and modern energy. From the neon-lit streets of Tokyo to the serene rice terraces of northern Vietnam, every country reveals a unique rhythm that pulls you deeper into its story. The sheer diversity of languages, landscapes, and lifestyles makes Asia a destination that never feels predictable.</p>
+<p data-start="459" data-end="919">One of the most rewarding parts of exploring Asia is the food — an ever-changing adventure in itself. Whether it’s steaming bowls of pho in Hanoi, sizzling street skewers in Bangkok, or delicate sushi in Kyoto, each meal is an expression of local history and creativity. Food markets are often the best introduction to a new city’s character, blending the scents of spices, grilled seafood, and fresh herbs with the hum of conversation and motorbike engines.</p>
+<p data-start="921" data-end="1318">Beyond its urban chaos lies a continent of calm and spirituality. From Buddhist temples in Cambodia to the quiet mountain monasteries of Nepal, Asia invites reflection as much as discovery. Many travelers find that the deeper they venture off the tourist path — into small villages or forested trails — the more they connect with the heart of local life, where hospitality is humble yet genuine.</p>
+<p data-start="1320" data-end="1715" data-is-last-node="" data-is-only-node="">Asia is not just a destination but a transformation. Every border crossed shifts your perspective — from the futuristic skylines of Singapore to the ancient ruins of Angkor Wat. You return home not just with photographs, but with a different sense of time, beauty, and balance — the quiet realization that the world is vast, and every journey through it teaches you a little more about yourself.</p>
+
+Existing category: Uncategorized
+Existing tags: none
+        )
+
+    [2] => OpenAI\Responses\Chat\CreateResponseMessage Object
+        (
+            [role] => assistant
+            [content] => 
+            [annotations] => Array
+                (
+                )
+
+            [toolCalls] => Array
+                (
+                    [0] => OpenAI\Responses\Chat\CreateResponseToolCall Object
+                        (
+                            [id] => call_wOZ89pXeKOs8Klc0OBa2EscV
+                            [type] => function
+                            [function] => OpenAI\Responses\Chat\CreateResponseToolCallFunction Object
+                                (
+                                    [name] => find_or_create_category
+                                    [arguments] => {"name": "Travel"}
+                                )
+
+                        )
+
+                    [1] => OpenAI\Responses\Chat\CreateResponseToolCall Object
+                        (
+                            [id] => call_85rfv1Gi2loi5Ak6WZ6TaXe2
+                            [type] => function
+                            [function] => OpenAI\Responses\Chat\CreateResponseToolCallFunction Object
+                                (
+                                    [name] => find_or_create_tags
+                                    [arguments] => {"names": ["Asia", "Culture", "Food", "Travel", "Exploration"]}
+                                )
+
+                        )
+
+                )
+
+            [functionCall] => 
+            [audio] => 
+        )
+
+    [3] => Array
+        (
+            [role] => tool
+            [tool_call_id] => call_wOZ89pXeKOs8Klc0OBa2EscV
+            [content] => {"term_id":3}
+        )
+
+    [4] => Array
+        (
+            [role] => tool
+            [tool_call_id] => call_85rfv1Gi2loi5Ak6WZ6TaXe2
+            [content] => {"term_ids":[4,5,6,7,14]}
+        )
+
+)
+
+[2025-10-19 21:21:12] debug: [
+    "Category_Lookup_Tool",
+    "Tag_Lookup_Tool"
+]
+[2025-10-19 21:21:12] debug: {
+    "id": "chatcmpl-CSV7wVOLGhq14mX58rVPy2PxOyBO2",
+    "object": "chat.completion",
+    "created": 1760908872,
+    "model": "gpt-4o-mini-2024-07-18",
+    "systemFingerprint": "fp_560af6e559",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": null,
+                "annotations": [],
+                "toolCalls": [
+                    {
+                        "id": "call_hqTFAH4dtSfkdW0oQKUVcF0K",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_category",
+                            "arguments": "{\"name\": \"Travel\"}"
+                        }
+                    },
+                    {
+                        "id": "call_4zktB59b8Ji5Qjg47qJQMidr",
+                        "type": "function",
+                        "function": {
+                            "name": "find_or_create_tags",
+                            "arguments": "{\"names\": [\"Asia\", \"Cultural Journey\", \"Food\", \"Travel Exploration\", \"Spirituality\"]}"
+                        }
+                    }
+                ],
+                "functionCall": null,
+                "audio": null
+            },
+            "logprobs": null,
+            "finishReason": "tool_calls"
+        }
+    ],
+    "usage": {
+        "promptTokens": 550,
+        "completionTokens": 62,
+        "totalTokens": 612,
+        "promptTokensDetails": {
+            "audioTokens": 0,
+            "cachedTokens": 0
+        },
+        "completionTokensDetails": {
+            "audioTokens": 0,
+            "reasoningTokens": 0,
+            "acceptedPredictionTokens": 0,
+            "rejectedPredictionTokens": 0
+        }
+    }
+}
+[2025-10-19 21:21:12] debug: Array
+(
+    [0] => Array
+        (
+            [role] => system
+            [content] => You are a WordPress editorial AI assistant. Analyze the post content and assign the most relevant category and tags. If the category and tags are already relevant enough, do not add extra. You can call tools to create them if missing. Return only JSON in this exact format: {"category": "Travel", "tags": ["Thailand", "Beaches", "Vacation"]}.
+        )
+
+    [1] => Array
+        (
+            [role] => user
+            [content] => Post title: Discovering Asia: A Journey Through Culture, Flavor, and Contrast
+
+Post content: <p data-start="80" data-end="457">Traveling across Asia is like stepping into a living mosaic of color, tradition, and modern energy. From the neon-lit streets of Tokyo to the serene rice terraces of northern Vietnam, every country reveals a unique rhythm that pulls you deeper into its story. The sheer diversity of languages, landscapes, and lifestyles makes Asia a destination that never feels predictable.</p>
+<p data-start="459" data-end="919">One of the most rewarding parts of exploring Asia is the food — an ever-changing adventure in itself. Whether it’s steaming bowls of pho in Hanoi, sizzling street skewers in Bangkok, or delicate sushi in Kyoto, each meal is an expression of local history and creativity. Food markets are often the best introduction to a new city’s character, blending the scents of spices, grilled seafood, and fresh herbs with the hum of conversation and motorbike engines.</p>
+<p data-start="921" data-end="1318">Beyond its urban chaos lies a continent of calm and spirituality. From Buddhist temples in Cambodia to the quiet mountain monasteries of Nepal, Asia invites reflection as much as discovery. Many travelers find that the deeper they venture off the tourist path — into small villages or forested trails — the more they connect with the heart of local life, where hospitality is humble yet genuine.</p>
+<p data-start="1320" data-end="1715" data-is-last-node="" data-is-only-node="">Asia is not just a destination but a transformation. Every border crossed shifts your perspective — from the futuristic skylines of Singapore to the ancient ruins of Angkor Wat. You return home not just with photographs, but with a different sense of time, beauty, and balance — the quiet realization that the world is vast, and every journey through it teaches you a little more about yourself.</p>
+
+Existing category: Uncategorized
+Existing tags: none
+        )
+
+    [2] => Array
+        (
+            [role] => assistant
+            [content] => 
+            [tool_calls] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => call_hqTFAH4dtSfkdW0oQKUVcF0K
+                            [type] => function
+                            [function] => Array
+                                (
+                                    [name] => find_or_create_category
+                                    [arguments] => {"name": "Travel"}
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => call_4zktB59b8Ji5Qjg47qJQMidr
+                            [type] => function
+                            [function] => Array
+                                (
+                                    [name] => find_or_create_tags
+                                    [arguments] => {"names": ["Asia", "Cultural Journey", "Food", "Travel Exploration", "Spirituality"]}
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [3] => Array
+        (
+            [role] => tool
+            [tool_call_id] => call_hqTFAH4dtSfkdW0oQKUVcF0K
+            [content] => {"term_id":3}
+        )
+
+)
+
+[2025-10-19 21:21:12] debug: Array
+(
+    [0] => Array
+        (
+            [role] => system
+            [content] => You are a WordPress editorial AI assistant. Analyze the post content and assign the most relevant category and tags. If the category and tags are already relevant enough, do not add extra. You can call tools to create them if missing. Return only JSON in this exact format: {"category": "Travel", "tags": ["Thailand", "Beaches", "Vacation"]}.
+        )
+
+    [1] => Array
+        (
+            [role] => user
+            [content] => Post title: Discovering Asia: A Journey Through Culture, Flavor, and Contrast
+
+Post content: <p data-start="80" data-end="457">Traveling across Asia is like stepping into a living mosaic of color, tradition, and modern energy. From the neon-lit streets of Tokyo to the serene rice terraces of northern Vietnam, every country reveals a unique rhythm that pulls you deeper into its story. The sheer diversity of languages, landscapes, and lifestyles makes Asia a destination that never feels predictable.</p>
+<p data-start="459" data-end="919">One of the most rewarding parts of exploring Asia is the food — an ever-changing adventure in itself. Whether it’s steaming bowls of pho in Hanoi, sizzling street skewers in Bangkok, or delicate sushi in Kyoto, each meal is an expression of local history and creativity. Food markets are often the best introduction to a new city’s character, blending the scents of spices, grilled seafood, and fresh herbs with the hum of conversation and motorbike engines.</p>
+<p data-start="921" data-end="1318">Beyond its urban chaos lies a continent of calm and spirituality. From Buddhist temples in Cambodia to the quiet mountain monasteries of Nepal, Asia invites reflection as much as discovery. Many travelers find that the deeper they venture off the tourist path — into small villages or forested trails — the more they connect with the heart of local life, where hospitality is humble yet genuine.</p>
+<p data-start="1320" data-end="1715" data-is-last-node="" data-is-only-node="">Asia is not just a destination but a transformation. Every border crossed shifts your perspective — from the futuristic skylines of Singapore to the ancient ruins of Angkor Wat. You return home not just with photographs, but with a different sense of time, beauty, and balance — the quiet realization that the world is vast, and every journey through it teaches you a little more about yourself.</p>
+
+Existing category: Uncategorized
+Existing tags: none
+        )
+
+    [2] => Array
+        (
+            [role] => assistant
+            [content] => 
+            [tool_calls] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => call_hqTFAH4dtSfkdW0oQKUVcF0K
+                            [type] => function
+                            [function] => Array
+                                (
+                                    [name] => find_or_create_category
+                                    [arguments] => {"name": "Travel"}
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => call_4zktB59b8Ji5Qjg47qJQMidr
+                            [type] => function
+                            [function] => Array
+                                (
+                                    [name] => find_or_create_tags
+                                    [arguments] => {"names": ["Asia", "Cultural Journey", "Food", "Travel Exploration", "Spirituality"]}
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [3] => Array
+        (
+            [role] => tool
+            [tool_call_id] => call_hqTFAH4dtSfkdW0oQKUVcF0K
+            [content] => {"term_id":3}
+        )
+
+    [4] => Array
+        (
+            [role] => tool
+            [tool_call_id] => call_4zktB59b8Ji5Qjg47qJQMidr
+            [content] => {"term_ids":[4,15,6,16,11]}
+        )
+
+)
+
