@@ -22,9 +22,9 @@
     "phpcompatibility/phpcompatibility-wp": "^2.0"
   },
   "autoload": {
-    "psr-4": {
-      "Wp_Agents\\": "lib/"
-    }
+    "files": [
+      "autoload.php"
+    ]
   },
   "scripts": {
     "lint": [
