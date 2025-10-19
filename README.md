@@ -200,6 +200,8 @@ That's all we need. After, go into WordPress and create a new post (you can use 
 
 After you hit save (or publish), you should see that your post has a category and tags set.
 
+<img width="250" height="500" alt="Screenshot 2025-10-19 at 6 41 27 PM" src="https://github.com/user-attachments/assets/62254931-92f8-4ae8-88aa-1a82f23eb524" />
+
 ## Roadmap
 
 - **Workflows:** Introduce workflows to connect and orchestrate multiple agents for complex, multi-step tasks.
