@@ -41,5 +41,4 @@ class Tool_Registry {
 
 		return $this->tools[ $name ]->execute( $arguments );
 	}
-
 }

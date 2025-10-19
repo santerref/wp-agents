@@ -18,11 +18,10 @@ class Input_Manager {
 			throw new Input_Not_Registered_Exception();
 		}
 
-		return new self::$inputs[ $name ];
+		return new self::$inputs[ $name ]();
 	}
 
 	public static function boot(): void {
 		do_action( 'wp_agents_register_inputs' );
 	}
-
 }

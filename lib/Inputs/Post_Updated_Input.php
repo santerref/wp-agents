@@ -14,8 +14,8 @@ class Post_Updated_Input extends Abstract_Input {
 			throw new Skip_Agent_Exception();
 		}
 
-		$categories = wp_get_post_categories( $post->ID, [ 'fields' => 'names' ] );
-		$tags       = wp_get_post_tags( $post->ID, [ 'fields' => 'names' ] );
+		$categories = wp_get_post_categories( $post->ID, array( 'fields' => 'names' ) );
+		$tags       = wp_get_post_tags( $post->ID, array( 'fields' => 'names' ) );
 
 		$category_list = empty( $categories ) ? 'none' : implode( ', ', $categories );
 		$tag_list      = empty( $tags ) ? 'none' : implode( ', ', $tags );
@@ -29,5 +29,4 @@ Existing category: {$category_list}
 Existing tags: {$tag_list}
 PROMPT;
 	}
-
 }

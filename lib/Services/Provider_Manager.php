@@ -2,13 +2,12 @@
 
 namespace Wp_Agents\Services;
 
-
 use Wp_Agents\Exceptions\Provider_Not_Registered_Exception;
 use Wp_Agents\Providers\Provider_Interface;
 
 class Provider_Manager {
 
-	protected static array $providers = [];
+	protected static array $providers = array();
 
 	public static function register( string $name, callable $callback ): void {
 		self::$providers[ $name ] = $callback();
@@ -25,5 +24,4 @@ class Provider_Manager {
 	public static function boot(): void {
 		do_action( 'wp_agents_register_providers' );
 	}
-
 }

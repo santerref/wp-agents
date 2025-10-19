@@ -18,8 +18,14 @@ class Open_Ai_Provider implements Provider_Interface {
 		$tools  = $agent->tools();
 
 		$messages   = array(
-			array( 'role' => 'system', 'content' => $agent->instructions() ),
-			array( 'role' => 'user', 'content' => $prompt )
+			array(
+				'role'    => 'system',
+				'content' => $agent->instructions(),
+			),
+			array(
+				'role'    => 'user',
+				'content' => $prompt,
+			),
 		);
 		$parameters = array(
 			'model'           => $agent->get_model(),
@@ -39,7 +45,7 @@ class Open_Ai_Provider implements Provider_Interface {
 		if ( ! empty( $message->toolCalls ) ) {
 			foreach ( $message->toolCalls as $call ) {
 				$function = $call->function;
-				$args     = json_decode( $function->arguments ?? '{}', true ) ?: [];
+				$args     = json_decode( $function->arguments ?? '{}', true ) ?: array();
 				$result   = $tool_registry->execute( $function->name, $args );
 
 				$messages[] = array(
@@ -49,11 +55,13 @@ class Open_Ai_Provider implements Provider_Interface {
 				);
 			}
 
-			$follow = $client->chat()->create( [
-				'model'           => $agent->get_model(),
-				'messages'        => $messages,
-				'response_format' => array( 'type' => $agent->json() ? 'json_object' : 'text' ),
-			] );
+			$follow = $client->chat()->create(
+				array(
+					'model'           => $agent->get_model(),
+					'messages'        => $messages,
+					'response_format' => array( 'type' => $agent->json() ? 'json_object' : 'text' ),
+				)
+			);
 
 			return $follow->choices[0]->message->content ?? '';
 		}

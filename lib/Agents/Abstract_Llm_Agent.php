@@ -54,7 +54,5 @@ abstract class Abstract_Llm_Agent {
 	}
 
 	public function handle_response( mixed $answer, array $args = array() ): void {
-
 	}
-
 }

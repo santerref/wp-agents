@@ -4,7 +4,7 @@ namespace Wp_Agents\Services;
 
 class Recursion_Guard {
 
-	protected static array $running = [];
+	protected static array $running = array();
 
 	public static function running( string $key ): bool {
 		return isset( self::$running[ $key ] );
@@ -20,5 +20,4 @@ class Recursion_Guard {
 			}
 		}
 	}
-
 }

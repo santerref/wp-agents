@@ -17,5 +17,4 @@ abstract class Abstract_Input {
 	public function get_accepted_args(): int {
 		return $this->accepted_args;
 	}
-
 }

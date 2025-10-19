@@ -36,5 +36,4 @@ class Logger extends AbstractLogger {
 
 		return strtr( $message, $replace );
 	}
-
 }

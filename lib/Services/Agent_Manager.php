@@ -15,19 +15,27 @@ class Agent_Manager {
 		foreach ( $agent->actions() as $action ) {
 			$input = Input_Manager::make( $action );
 
-			add_action( $action, function ( ...$args ) use ( $agent, $input, $name, $action ) {
-				Recursion_Guard::run( "{$name}:{$action}", function () use ( $input, $args, $agent ) {
-					try {
-						$built_input = $input->build( ...$args );
-						if ( ! empty( $built_input ) ) {
-							$provider = Provider_Manager::get( $agent->get_provider() );
-							$answer   = $agent->run( $built_input, $provider );
-							$agent->handle_response( $answer, $args );
+			add_action(
+				$action,
+				function ( ...$args ) use ( $agent, $input, $name, $action ) {
+					Recursion_Guard::run(
+						"{$name}:{$action}",
+						function () use ( $input, $args, $agent ) {
+							try {
+								$built_input = $input->build( ...$args );
+								if ( ! empty( $built_input ) ) {
+									$provider = Provider_Manager::get( $agent->get_provider() );
+									$answer   = $agent->run( $built_input, $provider );
+									$agent->handle_response( $answer, $args );
+								}
+							} catch ( Skip_Agent_Exception $e ) {
+							}
 						}
-					} catch ( Skip_Agent_Exception $e ) {
-					}
-				} );
-			}, $input->get_priority(), $input->get_accepted_args() );
+					);
+				},
+				$input->get_priority(),
+				$input->get_accepted_args()
+			);
 
 		}
 	}
@@ -35,5 +43,4 @@ class Agent_Manager {
 	public static function boot(): void {
 		do_action( 'wp_agents_register_agents' );
 	}
-
 }
