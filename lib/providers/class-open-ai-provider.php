@@ -42,11 +42,18 @@ class Open_Ai_Provider implements Provider_Interface {
 
 		$message    = $response->choices[0]->message;
 		$messages[] = $message->toArray();
+
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName
 		if ( ! empty( $message->toolCalls ) ) {
+			// phpcs:ignore WordPress.NamingConventions.ValidVariableName
 			foreach ( $message->toolCalls as $call ) {
 				$function = $call->function;
-				$args     = json_decode( $function->arguments ?? '{}', true ) ?: array();
-				$result   = $tool_registry->execute( $function->name, $args );
+				$args     = json_decode( $function->arguments ?? '{}', true );
+
+				if ( ! is_array( $args ) ) {
+					$args = array();
+				}
+				$result = $tool_registry->execute( $function->name, $args );
 
 				$messages[] = array(
 					'role'         => 'tool',

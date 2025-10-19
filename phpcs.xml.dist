@@ -5,7 +5,6 @@
   <file>wp-agents.php</file>
 
   <rule ref="WordPress-Core" />
-  <rule ref="WordPress-Docs" />
   <rule ref="WordPress-Extra" />
 
   <config name="minimum_supported_wp_version" value="6.0"/>

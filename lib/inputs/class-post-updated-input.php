@@ -10,7 +10,7 @@ class Post_Updated_Input extends Abstract_Input {
 
 	public static function build( ...$args ): string {
 		$post = $args[1];
-		if ( $post->post_type != 'post' ) {
+		if ( 'post' !== $post->post_type ) {
 			throw new Skip_Agent_Exception();
 		}
 

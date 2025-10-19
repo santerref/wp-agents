@@ -29,6 +29,7 @@ class Agent_Manager {
 									$agent->handle_response( $answer, $args );
 								}
 							} catch ( Skip_Agent_Exception $e ) {
+								wp_agents_logger()->error( $e->getMessage() );
 							}
 						}
 					);
