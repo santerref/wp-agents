@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name:       WP Agent Framework
+ * Plugin Name:       WP Agents
  * Plugin URI:        https://santerref.com/
  * Description:       Build autonomous, hook-driven agents for WordPress — automate tasks and add LLM intelligence with clean, developer-first architecture.
  * Version:           0.0.1
