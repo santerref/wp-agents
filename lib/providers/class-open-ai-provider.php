@@ -3,6 +3,8 @@
 namespace Wp_Agents\Providers;
 
 use Wp_Agents\Agents\Abstract_Llm_Agent;
+use Wp_Agents\System\Message;
+use Wp_Agents\System\Message_Stack;
 use Wp_Agents\Tools\Tool_Registry;
 
 class Open_Ai_Provider implements Provider_Interface {
@@ -13,23 +15,20 @@ class Open_Ai_Provider implements Provider_Interface {
 		$this->api_key = $api_key;
 	}
 
-	public function chat( string $input, Abstract_Llm_Agent $agent ): string {
+	public function chat( string $input, Abstract_Llm_Agent $agent ): Message_Stack {
 		$client = \OpenAI::client( $this->api_key );
 		$tools  = $agent->tools();
 
-		$messages   = array(
+		$messages = new Message_Stack(
 			array(
-				'role'    => 'system',
-				'content' => $agent->instructions(),
-			),
-			array(
-				'role'    => 'user',
-				'content' => $input,
-			),
+				new Message( 'system', $agent->instructions() ),
+				new Message( 'user', $input ),
+			)
 		);
+
 		$parameters = array(
 			'model'           => $agent->get_model(),
-			'messages'        => $messages,
+			'messages'        => $messages->to_raw_array(),
 			'response_format' => array( 'type' => $agent->json() ? 'json_object' : 'text' ),
 		);
 
@@ -40,8 +39,14 @@ class Open_Ai_Provider implements Provider_Interface {
 
 		$response = $client->chat()->create( $parameters );
 
-		$message    = $response->choices[0]->message;
-		$messages[] = $message->toArray();
+		$message = $response->choices[0]->message;
+		$messages->add(
+			new Message(
+				$message->role,
+				$message->content,
+				$message->toArray()
+			)
+		);
 
 		// phpcs:ignore WordPress.NamingConventions.ValidVariableName
 		if ( ! empty( $message->toolCalls ) ) {
@@ -55,24 +60,35 @@ class Open_Ai_Provider implements Provider_Interface {
 				}
 				$result = $tool_registry->execute( $function->name, $args );
 
-				$messages[] = array(
-					'role'         => 'tool',
-					'tool_call_id' => $call->id,
-					'content'      => wp_json_encode( $result ),
+				$messages->add(
+					new Message(
+						'tool',
+						wp_json_encode( $result ),
+						array(
+							'tool_call_id' => $call->id,
+						)
+					)
 				);
 			}
 
 			$follow = $client->chat()->create(
 				array(
 					'model'           => $agent->get_model(),
-					'messages'        => $messages,
+					'messages'        => $messages->to_raw_array(),
 					'response_format' => array( 'type' => $agent->json() ? 'json_object' : 'text' ),
 				)
 			);
 
-			return $follow->choices[0]->message->content ?? '';
+			$message = $follow->choices[0]->message;
+			$messages->add(
+				new Message(
+					$message->role,
+					$message->content,
+					$message->toArray(),
+				)
+			);
 		}
 
-		return $response->choices[0]->message->content ?? '';
+		return $messages;
 	}
 }

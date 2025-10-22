@@ -21,6 +21,8 @@ class Agent_Runner {
 	}
 
 	public function chat(): mixed {
-		return $this->provider->chat( $this->input, $this->agent );
+		$message_stack = $this->provider->chat( $this->input, $this->agent );
+
+		return $message_stack->last()?->get_content();
 	}
 }
