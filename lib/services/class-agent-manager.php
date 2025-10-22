@@ -14,11 +14,11 @@ class Agent_Manager {
 	}
 
 	public static function get( string $name ): Abstract_Llm_Agent {
-		if ( ! isset( static::$agents[ $name ] ) ) {
+		if ( ! isset( self::$agents[ $name ] ) ) {
 			throw new Agent_Not_Found_Exception();
 		}
 
-		return static::$agents[ $name ];
+		return self::$agents[ $name ];
 	}
 
 	public static function boot(): void {

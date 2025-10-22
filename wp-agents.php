@@ -61,6 +61,7 @@ add_action(
 
 			add_action( 'init', array( \Wp_Agents\Services\Provider_Manager::class, 'boot' ) );
 			add_action( 'init', array( \Wp_Agents\Services\Agent_Manager::class, 'boot' ) );
+			add_action( 'rest_api_init', array( \Wp_Agents\System\Rest::class, 'register' ) );
 		}
 	}
 );
