@@ -20,9 +20,9 @@ class Agent_Runner {
 		$this->provider = Provider_Manager::get( $agent->get_provider() );
 	}
 
-	public function chat(): mixed {
+	public function chat(): Message {
 		$message_stack = $this->provider->chat( $this->input, $this->agent );
 
-		return $message_stack->last()?->get_content();
+		return $message_stack->last();
 	}
 }

@@ -24,6 +24,42 @@ cd wp-agents && composer install
 wp plugin activate wp-agents
 ```
 
+## REST API
+
+Each agent can be accessed programmatically through the WordPress REST API. 
+
+This allows external systems or front-end applications to send a message to any registered agent and receive the model’s response in JSON format.
+
+**Endpoint**
+
+```bash
+POST /wp-json/wp-agents/v1/chat
+```
+
+**Example**
+
+```bash
+curl --location 'https://example.com/wp-json/wp-agents/v1/chat' \
+--header 'Content-Type: application/json' \
+--data '{
+    "agent": "taxonomy_agent",
+    "message": "Hello"
+}'
+```
+
+**Example response**
+
+```json
+{
+    "agent": "taxonomy_agent",
+    "message": "Hello",
+    "response": {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today?"
+    }
+}
+```
+
 ## Demo
 
 https://github.com/santerref/wp-agents-demo

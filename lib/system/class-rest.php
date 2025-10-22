@@ -28,8 +28,9 @@ class Rest {
 
 		return rest_ensure_response(
 			array(
+				'agent'    => $request->get_param( 'agent' ),
 				'message'  => $message,
-				'response' => $response,
+				'response' => $response->get_raw_response(),
 			)
 		);
 	}
