@@ -36,18 +36,8 @@ add_action(
 			if ( ! function_exists( 'wp_agents_register' ) ) {
 
 				function wp_agents_register( string $name, string $agent_class ) {
-					\Wp_Agents\Services\Agent_Manager::register( $name, new $agent_class() );
+					\Wp_Agents\Services\Agent_Manager::register( $name, $agent_class );
 				}
-
-			}
-
-			if ( ! function_exists( 'wp_agents_register_input' ) ) {
-
-				function wp_agents_register_input( string $name, string $input_class ) {
-					\Wp_Agents\Services\Input_Manager::register( $name, $input_class );
-				}
-
-				require_once __DIR__ . '/inc/inputs.php';
 
 			}
 
@@ -61,9 +51,17 @@ add_action(
 
 			}
 
+			if ( ! function_exists( 'wp_agents_get' ) ) {
+
+				function wp_agents_get( string $name ) {
+					return \Wp_Agents\Services\Agent_Manager::get( $name );
+				}
+
+			}
+
 			add_action( 'init', array( \Wp_Agents\Services\Provider_Manager::class, 'boot' ) );
-			add_action( 'init', array( \Wp_Agents\Services\Input_Manager::class, 'boot' ) );
 			add_action( 'init', array( \Wp_Agents\Services\Agent_Manager::class, 'boot' ) );
+			add_action( 'rest_api_init', array( \Wp_Agents\System\Rest::class, 'register' ) );
 		}
 	}
 );

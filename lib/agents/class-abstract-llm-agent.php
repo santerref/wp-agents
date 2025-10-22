@@ -3,6 +3,8 @@
 namespace Wp_Agents\Agents;
 
 use Wp_Agents\Providers\Provider_Interface;
+use Wp_Agents\Services\Provider_Manager;
+use Wp_Agents\System\Agent_Runner;
 
 abstract class Abstract_Llm_Agent {
 
@@ -12,24 +14,21 @@ abstract class Abstract_Llm_Agent {
 
 	protected bool $json = false;
 
-	protected array $actions = array();
-
 	protected array $filters = array();
 
 	protected array $tools = array();
 
 	abstract public function instructions(): string;
 
-	public function actions(): array {
-		return $this->actions;
-	}
-
 	public function filters(): array {
 		return $this->filters;
 	}
 
-	public function run( mixed $input, Provider_Interface $provider ): mixed {
-		return $provider->complete( $input, $this );
+	public function prompt( mixed $input ): Agent_Runner {
+		return new Agent_Runner(
+			$input,
+			$this
+		);
 	}
 
 	public function get_model(): string {
