@@ -13,7 +13,7 @@ class Open_Ai_Provider implements Provider_Interface {
 		$this->api_key = $api_key;
 	}
 
-	public function complete( string $prompt, Abstract_Llm_Agent $agent ): string {
+	public function chat( string $input, Abstract_Llm_Agent $agent ): string {
 		$client = \OpenAI::client( $this->api_key );
 		$tools  = $agent->tools();
 
@@ -24,7 +24,7 @@ class Open_Ai_Provider implements Provider_Interface {
 			),
 			array(
 				'role'    => 'user',
-				'content' => $prompt,
+				'content' => $input,
 			),
 		);
 		$parameters = array(
