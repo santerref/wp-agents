@@ -20,15 +20,18 @@ class Database_Memory extends Abstract_Memory {
 	}
 
 	public function remember( Message $message ): void {
-		$this->db->insert( $this->table, [
-			'agent'      => $this->agent,
-			'session_id' => $this->session_id,
-			'author'     => $message->get_author(),
-			'message'    => $message->get_message(),
-			'metadata'   => $message->get_metadata()
-				? wp_json_encode( $message->get_metadata() )
-				: null,
-		] );
+		$this->db->insert(
+			$this->table,
+			array(
+				'agent'      => $this->agent,
+				'session_id' => $this->session_id,
+				'author'     => $message->get_author(),
+				'message'    => $message->get_message(),
+				'metadata'   => $message->get_metadata()
+					? wp_json_encode( $message->get_metadata() )
+					: null,
+			)
+		);
 	}
 
 	public function load( ?int $limit = null ): Message_Stack {
@@ -40,7 +43,7 @@ class Database_Memory extends Abstract_Memory {
 		$params = array( $this->agent, $this->session_id );
 
 		if ( null !== $limit ) {
-			$sql      .= " LIMIT %d";
+			$sql     .= ' LIMIT %d';
 			$params[] = $limit;
 		}
 
@@ -49,21 +52,27 @@ class Database_Memory extends Abstract_Memory {
 			ARRAY_A
 		);
 
-		$messages = array_map( function ( $row ) {
-			return new Memorized_Message(
-				$row['author'],
-				$row['message'],
-				json_decode( $row['metadata'] ?? '[]', true )
-			);
-		}, $results );
+		$messages = array_map(
+			function ( $row ) {
+				return new Memorized_Message(
+					$row['author'],
+					$row['message'],
+					json_decode( $row['metadata'] ?? '[]', true )
+				);
+			},
+			$results
+		);
 
 		return new Message_Stack( $messages );
 	}
 
 	public function forget_all(): void {
-		$this->db->delete( $this->table, [
-			'agent'      => $this->agent,
-			'session_id' => $this->session_id,
-		] );
+		$this->db->delete(
+			$this->table,
+			array(
+				'agent'      => $this->agent,
+				'session_id' => $this->session_id,
+			)
+		);
 	}
 }

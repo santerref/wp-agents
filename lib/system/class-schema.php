@@ -19,7 +19,8 @@ class Schema {
 
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-			dbDelta( "CREATE TABLE $table (
+			dbDelta(
+				"CREATE TABLE $table (
 		        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		        agent VARCHAR(150) NOT NULL,
 		        session_id VARCHAR(150) NOT NULL,
@@ -29,10 +30,10 @@ class Schema {
 		        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		        INDEX (agent),
 		        INDEX (session_id)
-		    ) $charset;" );
+		    ) $charset;"
+			);
 
 			update_option( 'wp_agents_installed', true );
 		}
 	}
-
 }

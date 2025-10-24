@@ -23,9 +23,9 @@ class Open_Ai_Provider implements Provider_Interface {
 
 		$flatten = function ( Message $message ) {
 			return array(
-				       'role'    => $message->get_author(),
-				       'content' => $message->get_message(),
-			       ) + $message->get_metadata();
+				'role'    => $message->get_author(),
+				'content' => $message->get_message(),
+			) + $message->get_metadata();
 		};
 
 		$parameters = array(
@@ -80,7 +80,7 @@ class Open_Ai_Provider implements Provider_Interface {
 					$openai_message->role,
 					$openai_message->content,
 					array(
-						'tool_calls' => $tool_calls
+						'tool_calls' => $tool_calls,
 					)
 				)
 			);

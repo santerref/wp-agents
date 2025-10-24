@@ -21,5 +21,4 @@ abstract class Abstract_Memory {
 	abstract public function load( ?int $limit = null ): Message_Stack;
 
 	abstract public function forget_all(): void;
-
 }

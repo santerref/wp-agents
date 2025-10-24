@@ -35,7 +35,7 @@ class Message_Stack implements \IteratorAggregate, \Countable {
 	}
 
 	public function add( array|Message $messages ) {
-		$messages = $messages instanceof Message ? [ $messages ] : $messages;
+		$messages = $messages instanceof Message ? array( $messages ) : $messages;
 
 		foreach ( $messages as $message ) {
 			if ( $message instanceof Message ) {
