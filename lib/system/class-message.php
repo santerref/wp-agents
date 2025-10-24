@@ -30,8 +30,8 @@ class Message {
 		return $this->memorized;
 	}
 
-	public function get_metadata( ?string $key = null, mixed $default = null ): array {
-		return $key ? ( $this->metadata[ $key ] ?? $default ) : $this->metadata;
+	public function get_metadata( ?string $key = null, mixed $default_value = null ): array {
+		return $key ? ( $this->metadata[ $key ] ?? $default_value ) : $this->metadata;
 	}
 
 	public function to_array(): array {
