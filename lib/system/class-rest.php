@@ -24,13 +24,14 @@ class Rest {
 		$message  = $request->get_param( 'message' );
 		$response = $agent
 			->prompt( $message )
+			->with_session( $request->get_param( 'session_id' ) )
 			->chat();
 
 		return rest_ensure_response(
 			array(
 				'agent'    => $request->get_param( 'agent' ),
 				'message'  => $message,
-				'response' => $response->get_raw_response(),
+				'response' => $response->to_array(),
 			)
 		);
 	}

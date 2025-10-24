@@ -8,7 +8,7 @@ class Message_Stack implements \IteratorAggregate, \Countable {
 
 	protected array $messages = array();
 
-	public function __construct( array $messages ) {
+	public function __construct( array $messages = array() ) {
 		$this->messages = $messages;
 	}
 
@@ -30,16 +30,25 @@ class Message_Stack implements \IteratorAggregate, \Countable {
 		return $count ? $this->messages[ $count - 1 ] : null;
 	}
 
-	public function add( Message $message ) {
-		$this->messages[] = $message;
+	public function unshift( Message $message ) {
+		array_unshift( $this->messages, $message );
 	}
 
-	public function to_raw_array(): array {
-		return array_map(
-			function ( Message $message ) {
-				return $message->get_raw_response();
-			},
-			$this->messages
-		);
+	public function add( array|Message $messages ) {
+		$messages = $messages instanceof Message ? array( $messages ) : $messages;
+
+		foreach ( $messages as $message ) {
+			if ( $message instanceof Message ) {
+				$this->messages[] = $message;
+			}
+		}
+	}
+
+	public function all(): array {
+		return $this->messages;
+	}
+
+	public function map( callable $callback ): array {
+		return array_map( $callback, $this->all() );
 	}
 }

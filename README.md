@@ -8,8 +8,8 @@ Build autonomous, hook-driven agents for WordPress — automate tasks and add LL
 
 - **Providers:** Define and manage LLM providers (e.g., OpenAI, Anthropic) through a unified API for completions and structured outputs.
 - **Tools:** Register callable functions that agents can dynamically execute during reasoning or task completion.
-- **REST API:** Add REST API endpoints to enable external chat and interaction with agents.
-- **Input:** Capture and preprocess data from actions and filters to generate structured prompts for LLMs.
+- **REST API:** Provides endpoints that allow external applications to interact with agents and send or receive chat messages programmatically.
+- **Memory:** Supports persistent conversation history, enabling agents to retain context across sessions and handle long-running or multi-turn interactions.
 - **Agents:** Create modular agents that interact with WordPress using a consistent architecture.
 - **Tests:** Basic Pest testing structure in place — full coverage and assertions to be implemented.
 
@@ -70,7 +70,6 @@ https://github.com/santerref/wp-agents-demo
 ## Roadmap
 
 - **Workflows:** Introduce workflows to connect and orchestrate multiple agents for complex, multi-step tasks.
-- **Memory:** Implement persistent memory to maintain context across conversations and enable long-running sessions.
 - **Tests:** Expand and complete Pest test coverage for agents, tools, and provider logic.
 - **Providers:** Add more LLM providers and improve compatibility with third-party APIs.
 - **RAG:** Integrate Retrieval-Augmented Generation to allow agents to query custom datasets, documents, or WordPress content for more context-aware responses. 

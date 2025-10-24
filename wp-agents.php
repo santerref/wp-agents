@@ -3,7 +3,7 @@
  * Plugin Name:       WP Agents
  * Plugin URI:        https://santerref.com/
  * Description:       Build autonomous, hook-driven agents for WordPress — automate tasks and add LLM intelligence with clean, developer-first architecture.
- * Version:           0.0.1
+ * Version:           0.3.0
  * Requires at least: 6.8
  * Requires PHP:      8.4
  * Author:            Francis Santerre
@@ -13,12 +13,23 @@
  * Domain Path:       /languages
  */
 
-add_action(
-	'plugins_loaded',
-	function () {
-		if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-			require_once __DIR__ . '/vendor/autoload.php';
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
 
+	if ( ! function_exists( 'wp_agents_install' ) ) {
+
+		function wp_agents_install() {
+			$schema = new \Wp_Agents\System\Schema();
+			$schema->install();
+		}
+
+		register_activation_hook( __FILE__, 'wp_agents_install' );
+
+	}
+
+	add_action(
+		'plugins_loaded',
+		function () {
 			if ( ! function_exists( 'wp_agents_logger' ) ) {
 
 				function wp_agents_logger() {
@@ -63,5 +74,6 @@ add_action(
 			add_action( 'init', array( \Wp_Agents\Services\Agent_Manager::class, 'boot' ) );
 			add_action( 'rest_api_init', array( \Wp_Agents\System\Rest::class, 'register' ) );
 		}
-	}
-);
+	);
+
+}

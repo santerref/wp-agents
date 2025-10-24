@@ -4,46 +4,41 @@ namespace Wp_Agents\System;
 
 class Message {
 
-	protected string $role;
+	protected string $author;
 
-	protected ?string $content;
+	protected ?string $message;
 
-	protected array $raw_response = array();
+	protected array $metadata = array();
 
-	public function __construct( string $role, ?string $content, array $raw_response = array() ) {
-		$this->role    = $role;
-		$this->content = $content;
+	protected bool $memorized = false;
 
-		if ( empty( $raw_response ) ) {
-			$this->raw_response = array(
-				'role'    => $role,
-				'content' => $content,
-			);
-		} else {
-			$this->raw_response = $raw_response;
-		}
+	public function __construct( string $author, ?string $message, array $metadata = array() ) {
+		$this->author   = $author;
+		$this->message  = $message;
+		$this->metadata = $metadata;
 	}
 
-	public function get_role(): string {
-		return $this->role;
+	public function get_author(): string {
+		return $this->author;
 	}
 
-	public function get_content(): string {
-		return $this->content;
+	public function get_message(): string {
+		return $this->message;
 	}
 
-	public function get_raw_response(): array {
-		return array(
-			'role'    => $this->role,
-			'content' => $this->content,
-		) + $this->raw_response;
+	public function memorized(): bool {
+		return $this->memorized;
+	}
+
+	public function get_metadata( ?string $key = null, mixed $default_value = null ): array {
+		return $key ? ( $this->metadata[ $key ] ?? $default_value ) : $this->metadata;
 	}
 
 	public function to_array(): array {
 		return array(
-			'role'         => $this->role,
-			'content'      => $this->content,
-			'raw_response' => $this->raw_response,
+			'author'   => $this->author,
+			'message'  => $this->message,
+			'metadata' => $this->metadata,
 		);
 	}
 }

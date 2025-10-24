@@ -2,8 +2,7 @@
 
 namespace Wp_Agents\Agents;
 
-use Wp_Agents\Providers\Provider_Interface;
-use Wp_Agents\Services\Provider_Manager;
+use Wp_Agents\Memory\Abstract_Memory;
 use Wp_Agents\System\Agent_Runner;
 
 abstract class Abstract_Llm_Agent {
@@ -18,6 +17,16 @@ abstract class Abstract_Llm_Agent {
 
 	protected array $tools = array();
 
+	protected ?string $memory = null;
+
+	protected ?int $memory_limit = null;
+
+	protected string $name = '';
+
+	public function __construct( string $name ) {
+		$this->name = $name;
+	}
+
 	abstract public function instructions(): string;
 
 	public function filters(): array {
@@ -29,6 +38,10 @@ abstract class Abstract_Llm_Agent {
 			$input,
 			$this
 		);
+	}
+
+	public function name(): string {
+		return $this->name;
 	}
 
 	public function get_model(): string {
@@ -47,6 +60,13 @@ abstract class Abstract_Llm_Agent {
 		return $this->tools;
 	}
 
-	public function handle_response( mixed $answer, array $args = array() ): void {
+	public function get_memory( string $session_id ): ?Abstract_Memory {
+		if ( $this->memory ) {
+			$memory_class = $this->memory;
+
+			return new $memory_class( $this->name(), $session_id );
+		}
+
+		return null;
 	}
 }
