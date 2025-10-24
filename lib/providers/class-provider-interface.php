@@ -7,5 +7,5 @@ use Wp_Agents\System\Message_Stack;
 
 interface Provider_Interface {
 
-	public function chat( string $input, Abstract_Llm_Agent $agent ): Message_Stack;
+	public function chat( Message_Stack $message_stack, Abstract_Llm_Agent $agent ): void;
 }

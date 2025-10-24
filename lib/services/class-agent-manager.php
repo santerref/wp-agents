@@ -10,7 +10,7 @@ class Agent_Manager {
 	protected static array $agents = array();
 
 	public static function register( string $name, string $agent_class ): void {
-		self::$agents[ $name ] = new $agent_class();
+		self::$agents[ $name ] = new $agent_class( $name );
 	}
 
 	public static function get( string $name ): Abstract_Llm_Agent {
