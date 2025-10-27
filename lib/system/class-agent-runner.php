@@ -1,25 +1,19 @@
 <?php
 
-namespace Wp_Agents\System;
-
-use Wp_Agents\Agents\Abstract_Llm_Agent;
-use Wp_Agents\Providers\Provider_Interface;
-use Wp_Agents\Services\Provider_Manager;
-
-class Agent_Runner {
+class Wp_Agents_System_Agent_Runner {
 
 	protected string $input;
 
-	protected Provider_Interface $provider;
+	protected Wp_Agents_Providers_Interface $provider;
 
-	protected Abstract_Llm_Agent $agent;
+	protected Wp_Agents_Llm_Abstract $agent;
 
 	protected ?string $session_id = null;
 
-	public function __construct( string $input, Abstract_Llm_Agent $agent ) {
+	public function __construct( string $input, Wp_Agents_Llm_Abstract $agent ) {
 		$this->input    = $input;
 		$this->agent    = $agent;
-		$this->provider = Provider_Manager::get( $agent->get_provider() );
+		$this->provider = Wp_Agents_Services_Provider_Manager::get( $agent->get_provider() );
 	}
 
 	public function with_session( ?string $session_id ): static {
@@ -28,10 +22,10 @@ class Agent_Runner {
 		return $this;
 	}
 
-	public function chat(): Message {
+	public function chat(): Wp_Agents_System_Message {
 		$memory        = $this->session_id ? $this->agent->get_memory( $this->session_id ) : null;
-		$message_stack = $memory ? $memory->load() : new Message_Stack();
-		$message_stack->add( new Message( 'user', $this->input ) );
+		$message_stack = $memory ? $memory->load() : new Wp_Agents_System_Message_Stack();
+		$message_stack->add( new Wp_Agents_System_Message( 'user', $this->input ) );
 
 		$this->provider->chat( $message_stack, $this->agent );
 

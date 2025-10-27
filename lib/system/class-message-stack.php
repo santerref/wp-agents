@@ -1,10 +1,6 @@
 <?php
 
-namespace Wp_Agents\System;
-
-use Traversable;
-
-class Message_Stack implements \IteratorAggregate, \Countable {
+class Wp_Agents_System_Message_Stack implements \IteratorAggregate, \Countable {
 
 	protected array $messages = array();
 
@@ -20,25 +16,25 @@ class Message_Stack implements \IteratorAggregate, \Countable {
 		return count( $this->messages );
 	}
 
-	public function first(): ?Message {
+	public function first(): ?Wp_Agents_System_Message {
 		return $this->messages[0] ?? null;
 	}
 
-	public function last(): ?Message {
+	public function last(): ?Wp_Agents_System_Message {
 		$count = count( $this->messages );
 
 		return $count ? $this->messages[ $count - 1 ] : null;
 	}
 
-	public function unshift( Message $message ) {
+	public function unshift( Wp_Agents_System_Message $message ) {
 		array_unshift( $this->messages, $message );
 	}
 
-	public function add( array|Message $messages ) {
-		$messages = $messages instanceof Message ? array( $messages ) : $messages;
+	public function add( array|Wp_Agents_System_Message $messages ) {
+		$messages = $messages instanceof Wp_Agents_System_Message ? array( $messages ) : $messages;
 
 		foreach ( $messages as $message ) {
-			if ( $message instanceof Message ) {
+			if ( $message instanceof Wp_Agents_System_Message ) {
 				$this->messages[] = $message;
 			}
 		}

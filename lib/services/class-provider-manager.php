@@ -1,21 +1,22 @@
 <?php
 
-namespace Wp_Agents\Services;
-
-use Wp_Agents\Exceptions\Provider_Not_Registered_Exception;
-use Wp_Agents\Providers\Provider_Interface;
-
-class Provider_Manager {
+class Wp_Agents_Services_Provider_Manager {
 
 	protected static array $providers = array();
 
 	public static function register( string $name, callable $callback ): void {
-		self::$providers[ $name ] = $callback();
+		$provider = $callback();
+		if ( $provider instanceof Wp_Agents_Providers_Interface ) {
+			self::$providers[ $name ] = $provider;
+		}
 	}
 
-	public static function get( string $name ): Provider_Interface {
+	public static function get( string $name ): Wp_Agents_Providers_Interface|WP_Error {
 		if ( ! isset( self::$providers[ $name ] ) ) {
-			throw new Provider_Not_Registered_Exception();
+			return new WP_Error(
+				'wp_agents_provider_not_registered',
+				"The requested provider {$name} is not registered."
+			);
 		}
 
 		return self::$providers[ $name ];

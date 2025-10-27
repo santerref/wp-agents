@@ -1,11 +1,6 @@
 <?php
 
-namespace Wp_Agents\Agents;
-
-use Wp_Agents\Memory\Abstract_Memory;
-use Wp_Agents\System\Agent_Runner;
-
-abstract class Abstract_Llm_Agent {
+abstract class Wp_Agents_Llm_Abstract {
 
 	protected string $model = 'gpt-4o-mini';
 
@@ -33,8 +28,8 @@ abstract class Abstract_Llm_Agent {
 		return $this->filters;
 	}
 
-	public function prompt( mixed $input ): Agent_Runner {
-		return new Agent_Runner(
+	public function prompt( mixed $input ): Wp_Agents_System_Agent_Runner {
+		return new Wp_Agents_System_Agent_Runner(
 			$input,
 			$this
 		);
@@ -60,7 +55,7 @@ abstract class Abstract_Llm_Agent {
 		return $this->tools;
 	}
 
-	public function get_memory( string $session_id ): ?Abstract_Memory {
+	public function get_memory( string $session_id ): ?Wp_Agents_Memory_Abstract {
 		if ( $this->memory ) {
 			$memory_class = $this->memory;
 

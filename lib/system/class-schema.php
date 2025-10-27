@@ -1,8 +1,6 @@
 <?php
 
-namespace Wp_Agents\System;
-
-class Schema {
+class Wp_Agents_System_Schema {
 
 	protected \wpdb $db;
 

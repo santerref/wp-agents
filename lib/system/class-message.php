@@ -1,8 +1,6 @@
 <?php
 
-namespace Wp_Agents\System;
-
-class Message {
+class Wp_Agents_System_Message {
 
 	protected string $author;
 

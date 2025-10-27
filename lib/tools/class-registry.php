@@ -1,10 +1,6 @@
 <?php
 
-namespace Wp_Agents\Tools;
-
-use Wp_Agents\Exceptions\Tool_Not_Found_Exception;
-
-class Tool_Registry {
+class Wp_Agents_Tools_Registry {
 
 	protected array $tools = array();
 
@@ -36,7 +32,10 @@ class Tool_Registry {
 
 	public function execute( string $name, array $arguments = array() ): mixed {
 		if ( ! isset( $this->tools[ $name ] ) ) {
-			throw new Tool_Not_Found_Exception();
+			return new WP_Error(
+				'wp_agents_tool_not_found',
+				"The tool with the name {$name} was not found."
+			);
 		}
 
 		return $this->tools[ $name ]->execute( $arguments );

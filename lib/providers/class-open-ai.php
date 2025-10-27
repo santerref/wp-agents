@@ -1,13 +1,8 @@
 <?php
 
-namespace Wp_Agents\Providers;
-
-use Wp_Agents\Agents\Abstract_Llm_Agent;
-use Wp_Agents\System\Message;
-use Wp_Agents\System\Message_Stack;
 use Wp_Agents\Tools\Tool_Registry;
 
-class Open_Ai_Provider implements Provider_Interface {
+class Wp_Agents_Providers_Open_Ai implements Wp_Agents_Providers_Interface {
 
 	protected string $api_key;
 
@@ -15,13 +10,13 @@ class Open_Ai_Provider implements Provider_Interface {
 		$this->api_key = $api_key;
 	}
 
-	public function chat( Message_Stack $message_stack, Abstract_Llm_Agent $agent ): void {
+	public function chat( Wp_Agents_System_Message_Stack $message_stack, Wp_Agents_Llm_Abstract $agent ): void {
 		$client = \OpenAI::client( $this->api_key );
 		$tools  = $agent->tools();
 
-		$message_stack->unshift( new Message( 'system', $agent->instructions() ) );
+		$message_stack->unshift( new Wp_Agents_System_Message( 'system', $agent->instructions() ) );
 
-		$flatten = function ( Message $message ) {
+		$flatten = function ( Wp_Agents_System_Message $message ) {
 			return array(
 				'role'    => $message->get_author(),
 				'content' => $message->get_message(),
@@ -66,7 +61,7 @@ class Open_Ai_Provider implements Provider_Interface {
 					),
 				);
 
-				$tool_messages[] = new Message(
+				$tool_messages[] = new Wp_Agents_System_Message(
 					'tool',
 					wp_json_encode( $result ),
 					array(
@@ -76,7 +71,7 @@ class Open_Ai_Provider implements Provider_Interface {
 			}
 
 			$message_stack->add(
-				new Message(
+				new Wp_Agents_System_Message(
 					$openai_message->role,
 					$openai_message->content,
 					array(
@@ -96,14 +91,14 @@ class Open_Ai_Provider implements Provider_Interface {
 
 			$openai_message = $follow->choices[0]->message;
 			$message_stack->add(
-				new Message(
+				new Wp_Agents_System_Message(
 					$openai_message->role,
 					$openai_message->content
 				)
 			);
 		} else {
 			$message_stack->add(
-				new Message(
+				new Wp_Agents_System_Message(
 					$openai_message->role,
 					$openai_message->content,
 				)

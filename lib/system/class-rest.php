@@ -1,10 +1,6 @@
 <?php
 
-namespace Wp_Agents\System;
-
-use Wp_Agents\Services\Agent_Manager;
-
-class Rest {
+class Wp_Agents_System_Rest {
 
 	public static function register(): void {
 		register_rest_route(
@@ -19,7 +15,7 @@ class Rest {
 	}
 
 	public static function handle( \WP_REST_Request $request ) {
-		$agent = Agent_Manager::get( $request->get_param( 'agent' ) );
+		$agent = Wp_Agents_Services_Agent_Manager::get( $request->get_param( 'agent' ) );
 
 		$message  = $request->get_param( 'message' );
 		$response = $agent

@@ -1,8 +1,6 @@
 <?php
 
-namespace Wp_Agents\Services;
-
-class Recursion_Guard {
+class Wp_Agents_Services_Recursion_Guard {
 
 	protected static array $running = array();
 

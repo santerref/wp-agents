@@ -1,8 +1,6 @@
 <?php
 
-namespace Wp_Agents\Tools;
-
-interface Tool_Interface {
+interface Wp_Agents_Tools_Interface {
 
 	public function definition(): array;
 

@@ -1,11 +1,6 @@
 <?php
 
-namespace Wp_Agents\Services;
-
-use Wp_Agents\Agents\Abstract_Llm_Agent;
-use Wp_Agents\Exceptions\Agent_Not_Found_Exception;
-
-class Agent_Manager {
+class Wp_Agents_Services_Agent_Manager {
 
 	protected static array $agents = array();
 
@@ -13,9 +8,12 @@ class Agent_Manager {
 		self::$agents[ $name ] = new $agent_class( $name );
 	}
 
-	public static function get( string $name ): Abstract_Llm_Agent {
+	public static function get( string $name ): Wp_Agents_Llm_Abstract|WP_Error {
 		if ( ! isset( self::$agents[ $name ] ) ) {
-			throw new Agent_Not_Found_Exception();
+			return new WP_Error(
+				'wp_agents_agent_not_found',
+				"The agent with the name {$name} was not found."
+			);
 		}
 
 		return self::$agents[ $name ];
