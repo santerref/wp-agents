@@ -30,7 +30,7 @@ class Wp_Agents_System_Agent_Runner {
 		$this->provider->chat( $message_stack, $this->agent );
 
 		foreach ( $message_stack->all() as $message ) {
-			if ( ! $message->memorized() && 'system' !== $message->get_author() ) {
+			if ( ! $message->memorized() && $this->provider->memorizable( $message ) ) {
 				$memory?->remember( $message );
 			}
 		}

@@ -21,7 +21,7 @@ class Wp_Agents_System_Message {
 	}
 
 	public function get_message(): string {
-		return $this->message;
+		return $this->message ?? '';
 	}
 
 	public function memorized(): bool {
