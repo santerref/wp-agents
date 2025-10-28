@@ -1,8 +1,6 @@
 <?php
 
-namespace Wp_Agents\System;
-
-class Message {
+class Wp_Agents_System_Message {
 
 	protected string $author;
 
@@ -23,7 +21,7 @@ class Message {
 	}
 
 	public function get_message(): string {
-		return $this->message;
+		return $this->message ?? '';
 	}
 
 	public function memorized(): bool {

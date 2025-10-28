@@ -1,12 +1,6 @@
 <?php
 
-namespace Wp_Agents\Memory;
-
-use Wp_Agents\System\Memorized_Message;
-use Wp_Agents\System\Message;
-use Wp_Agents\System\Message_Stack;
-
-class Database_Memory extends Abstract_Memory {
+class Wp_Agents_Memory_Database extends Wp_Agents_Memory_Abstract {
 
 	protected \wpdb $db;
 
@@ -19,7 +13,7 @@ class Database_Memory extends Abstract_Memory {
 		$this->table = $wpdb->prefix . 'agents_memory_messages';
 	}
 
-	public function remember( Message $message ): void {
+	public function remember( Wp_Agents_System_Message $message ): void {
 		$this->db->insert(
 			$this->table,
 			array(
@@ -34,7 +28,7 @@ class Database_Memory extends Abstract_Memory {
 		);
 	}
 
-	public function load( ?int $limit = null ): Message_Stack {
+	public function load( ?int $limit = null ): Wp_Agents_System_Message_Stack {
 		$sql = "SELECT author, message, metadata
 	        FROM {$this->table}
 	        WHERE agent = %s AND session_id = %s
@@ -54,7 +48,7 @@ class Database_Memory extends Abstract_Memory {
 
 		$messages = array_map(
 			function ( $row ) {
-				return new Memorized_Message(
+				return new Wp_Agents_System_Memorized_Message(
 					$row['author'],
 					$row['message'],
 					json_decode( $row['metadata'] ?? '[]', true )
@@ -63,7 +57,7 @@ class Database_Memory extends Abstract_Memory {
 			$results
 		);
 
-		return new Message_Stack( $messages );
+		return new Wp_Agents_System_Message_Stack( $messages );
 	}
 
 	public function forget_all(): void {

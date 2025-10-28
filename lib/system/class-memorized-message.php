@@ -1,8 +1,6 @@
 <?php
 
-namespace Wp_Agents\System;
-
-class Memorized_Message extends Message {
+class Wp_Agents_System_Memorized_Message extends Wp_Agents_System_Message {
 
 	protected bool $memorized = true;
 }

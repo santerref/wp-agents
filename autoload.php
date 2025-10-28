@@ -1,21 +1,27 @@
 <?php
 
 spl_autoload_register( function ( $class ) {
-	$prefix   = 'Wp_Agents\\';
-	$base_dir = __DIR__ . '/lib/';
+	$prefix = 'Wp_Agents_';
+	$base   = __DIR__ . '/lib/';
 
-	if ( strncmp( $prefix, $class, strlen( $prefix ) ) !== 0 ) {
+	if ( ! str_starts_with( $class, $prefix ) ) {
 		return;
 	}
 
-	$relative = substr( $class, strlen( $prefix ) );
-	$relative = str_replace( '\\', '/', $relative );
+	$trim  = substr( $class, strlen( $prefix ) );
+	$parts = explode( '_', $trim );
 
-	$parts     = explode( '/', $relative );
-	$className = array_pop( $parts );
-	$filename  = 'class-' . strtolower( str_replace( '_', '-', $className ) ) . '.php';
+	if ( count( $parts ) < 2 ) {
+		return;
+	}
 
-	$path = $base_dir . strtolower( implode( '/', $parts ) ) . '/' . $filename;
+	$dirParts  = array_map( 'strtolower', array_slice( $parts, 0, 1 ) );
+	$fileParts = array_map( 'strtolower', array_slice( $parts, 1 ) );
+
+	$dir  = implode( '/', $dirParts );
+	$file = 'class-' . implode( '-', $fileParts ) . '.php';
+
+	$path = $base . $dir . '/' . $file;
 
 	if ( file_exists( $path ) ) {
 		require $path;
