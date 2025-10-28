@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress">
+    <description>WordPress coding standards for wp-agents</description>
+    <file>lib</file>
+    <file>wp-agents.php</file>
+
+    <rule ref="WordPress-Core">
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+    </rule>
+    <rule ref="WordPress-Extra"/>
+
+    <config name="minimum_supported_wp_version" value="6.0"/>
+    <config name="testVersion" value="8.4-"/>
+
+    <exclude-pattern>vendor/*</exclude-pattern>
+</ruleset>

@@ -26,10 +26,10 @@
   },
   "scripts": {
     "lint": [
-      "phpcs --standard=phpcs.xml.dist"
+      "phpcs -s --standard=phpcs.xml"
     ],
     "lint:fix": [
-      "phpcbf --standard=phpcs.xml.dist"
+      "phpcbf --standard=phpcs.xml"
     ],
     "test": [
       "pest"

@@ -41,7 +41,10 @@ class Wp_Agents_Providers_Open_Ai implements Wp_Agents_Providers_Interface {
 
 			// phpcs:ignore WordPress.NamingConventions.ValidVariableName
 			foreach ( $openai_message['tool_calls'] as $call ) {
-				$args = json_decode( $call['function']['arguments'] ?? '{}', true ) ?: array();
+				$args = json_decode( $call['function']['arguments'] ?? '{}', true );
+				if ( ! is_array( $args ) ) {
+					$args = array();
+				}
 
 				if ( ! is_array( $args ) ) {
 					$args = array();
@@ -109,7 +112,7 @@ class Wp_Agents_Providers_Open_Ai implements Wp_Agents_Providers_Interface {
 	}
 
 	public function memorizable( Wp_Agents_System_Message $message ): bool {
-		return ! in_array( $message->get_author(), array( 'system', 'developer' ) );
+		return ! in_array( $message->get_author(), array( 'system', 'developer' ), true );
 	}
 
 	public function flatten( Wp_Agents_System_Message $message ): array {
