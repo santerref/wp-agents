@@ -28,8 +28,8 @@ if ( ! function_exists( 'wp_agents_install' ) ) {
 
 if ( ! function_exists( 'wp_agents_register' ) ) {
 
-	function wp_agents_register( string $name, string $agent_class ): void {
-		Wp_Agents_Services_Agent_Manager::register( $name, $agent_class );
+	function wp_agents_register( array $definition ): void {
+		Wp_Agents_Services_Agent_Manager::register( $definition );
 	}
 
 }
@@ -46,8 +46,16 @@ if ( ! function_exists( 'wp_agents_register_provider' ) ) {
 
 if ( ! function_exists( 'wp_agents_get' ) ) {
 
-	function wp_agents_get( string $name ): Wp_Agents_Llm_Abstract|WP_Error {
+	function wp_agents_get( string $name ): Wp_Agents_Agent_Abstract|WP_Error {
 		return Wp_Agents_Services_Agent_Manager::get( $name );
+	}
+
+}
+
+if ( ! function_exists( 'wp_agents_all' ) ) {
+
+	function wp_agents_all(): array {
+		return Wp_Agents_Services_Agent_Manager::all();
 	}
 
 }
@@ -59,4 +67,16 @@ add_action(
 		add_action( 'init', array( Wp_Agents_Services_Agent_Manager::class, 'boot' ) );
 		add_action( 'rest_api_init', array( Wp_Agents_System_Rest::class, 'register' ) );
 	}
+);
+
+add_action(
+	'plugins_loaded',
+	function () {
+		foreach ( wp_agents_all() as $agent ) {
+			if ( true && $file = $agent->get_file() ) {
+				require_once $file;
+			}
+		}
+	},
+	20
 );

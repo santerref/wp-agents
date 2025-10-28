@@ -8,7 +8,7 @@ class Wp_Agents_Providers_Open_Ai implements Wp_Agents_Providers_Interface {
 		$this->api_key = $api_key;
 	}
 
-	public function chat( Wp_Agents_System_Message_Stack $message_stack, Wp_Agents_Llm_Abstract $agent ): void {
+	public function chat( Wp_Agents_System_Message_Stack $message_stack, Wp_Agents_Agent_Abstract $agent ): void {
 		$tools = $agent->tools();
 
 		$message_stack->unshift( new Wp_Agents_System_Message( 'developer', $agent->instructions() ) );

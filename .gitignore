@@ -2,3 +2,7 @@
 /logs/*
 !/logs/.gitkeep
 .DS_Store
+/installed/agents/*
+!/installed/agents/.gitkeep
+/installed/tools/*
+!/installed/tools/.gitkeep
