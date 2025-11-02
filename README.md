@@ -72,4 +72,5 @@ https://github.com/santerref/wp-agents-demo
 - **Workflows:** Introduce workflows to connect and orchestrate multiple agents for complex, multi-step tasks.
 - **Tests:** Expand and complete Pest test coverage for agents, tools, and provider logic.
 - **Providers:** Add more LLM providers and improve compatibility with third-party APIs.
-- **RAG:** Integrate Retrieval-Augmented Generation to allow agents to query custom datasets, documents, or WordPress content for more context-aware responses. 
+- **RAG:** Integrate Retrieval-Augmented Generation to allow agents to query custom datasets, documents, or WordPress content for more context-aware responses.
+- **MCP Server:** Ship a local Message-Control-Protocol server to expose WordPress as a tool provider and allow external AI clients to execute WordPress actions and workflows securely.
