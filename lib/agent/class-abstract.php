@@ -16,7 +16,7 @@ abstract class Wp_Agents_Agent_Abstract {
 		'title'        => '',
 		'hooks'        => array(),
 		'file'         => null,
-		'dir'          => null
+		'dir'          => null,
 	);
 
 	public function __construct( array $definition ) {
@@ -75,7 +75,7 @@ abstract class Wp_Agents_Agent_Abstract {
 		return null;
 	}
 
-	public function toArray(): array {
+	public function to_array(): array {
 		return $this->definition;
 	}
 }

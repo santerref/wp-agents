@@ -60,21 +60,24 @@ class Wp_Agents_Services_Agent_Manager {
 	}
 
 	protected static function read_definition( string $file ): array {
-		$headers = [
+		$headers = array(
 			'Agent Name'  => 'Agent Name',
 			'Description' => 'Description',
 			'Version'     => 'Version',
 			'Tools'       => 'Tools',
 			'Hooks'       => 'Hooks',
-		];
+		);
 
 		$data = get_file_data( $file, $headers, 'agent' );
 
 		foreach ( array( 'Tools', 'Hooks' ) as $list_key ) {
 			if ( ! empty( $data[ $list_key ] ) ) {
-				$data[ $list_key ] = array_filter( array_map(
-					'trim', explode( ',', $data[ $list_key ] )
-				) );
+				$data[ $list_key ] = array_filter(
+					array_map(
+						'trim',
+						explode( ',', $data[ $list_key ] )
+					)
+				);
 			} else {
 				$data[ $list_key ] = array();
 			}
