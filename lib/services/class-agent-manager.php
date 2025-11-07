@@ -5,18 +5,18 @@ class Wp_Agents_Services_Agent_Manager {
 	protected static array $agents = array();
 
 	public static function register( array $definition ): void {
-		self::$agents[ $definition['name'] ] = new Wp_Agents_Agent_Base( $definition );
+		self::$agents[ $definition['id'] ] = new Wp_Agents_Agent_Base( $definition );
 	}
 
-	public static function get( string $name ): Wp_Agents_Agent_Abstract|WP_Error {
-		if ( ! isset( self::$agents[ $name ] ) ) {
+	public static function get( string $id ): Wp_Agents_Agent_Abstract|WP_Error {
+		if ( ! isset( self::$agents[ $id ] ) ) {
 			return new WP_Error(
 				'wp_agents_agent_not_found',
-				"The agent with the name {$name} was not found."
+				"The agent with the name {$id} was not found."
 			);
 		}
 
-		return self::$agents[ $name ];
+		return self::$agents[ $id ];
 	}
 
 
@@ -38,7 +38,7 @@ class Wp_Agents_Services_Agent_Manager {
 				}
 
 				$definition = self::read_definition( $file );
-				if ( empty( $definition['title'] ) ) {
+				if ( empty( $definition['name'] ) ) {
 					continue;
 				}
 
@@ -46,9 +46,10 @@ class Wp_Agents_Services_Agent_Manager {
 				if ( ! file_exists( $instructions ) || ! is_readable( $instructions ) ) {
 					continue;
 				}
+				$instructions_content = file( $instructions, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
 
-				$definition['instructions'] = trim( file_get_contents( $instructions ) );
-				$definition['name']         = $agent_name;
+				$definition['instructions'] = trim( $instructions_content ? $instructions_content : '' );
+				$definition['id']           = $agent_name;
 				$definition['file']         = $file;
 				$definition['directory']    = dirname( $file );
 
@@ -84,7 +85,7 @@ class Wp_Agents_Services_Agent_Manager {
 		}
 
 		return array(
-			'title'       => $data['Agent Name'],
+			'name'        => $data['Agent Name'],
 			'version'     => $data['Version'],
 			'description' => $data['Description'],
 			'tools'       => $data['Tools'],

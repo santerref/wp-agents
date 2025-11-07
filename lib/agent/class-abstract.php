@@ -10,10 +10,10 @@ abstract class Wp_Agents_Agent_Abstract {
 		'memory'       => null,
 		'memory_limit' => null,
 		'instructions' => '',
-		'name'         => '',
+		'id'           => '',
 		'version'      => '',
 		'description'  => '',
-		'title'        => '',
+		'name'         => '',
 		'hooks'        => array(),
 		'file'         => null,
 		'dir'          => null,
@@ -37,8 +37,8 @@ abstract class Wp_Agents_Agent_Abstract {
 		);
 	}
 
-	public function name(): string {
-		return $this->definition['name'];
+	public function id(): string {
+		return $this->definition['id'];
 	}
 
 	public function get_model(): string {
@@ -69,13 +69,22 @@ abstract class Wp_Agents_Agent_Abstract {
 		if ( $this->definition['memory'] ) {
 			$memory_class = $this->definition['memory'];
 
-			return new $memory_class( $this->name(), $session_id );
+			return new $memory_class( $this->id(), $session_id );
 		}
 
 		return null;
 	}
 
 	public function to_array(): array {
-		return $this->definition;
+		return array(
+			'id'          => $this->definition['id'],
+			'model'       => $this->definition['model'],
+			'provider'    => $this->definition['provider'],
+			'name'        => $this->definition['name'],
+			'description' => $this->definition['description'],
+			'hooks'       => $this->definition['hooks'],
+			'tools'       => $this->definition['tools'],
+			'version'     => $this->definition['version'],
+		);
 	}
 }

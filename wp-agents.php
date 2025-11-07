@@ -46,8 +46,8 @@ if ( ! function_exists( 'wp_agents_register' ) ) {
 
 if ( ! function_exists( 'wp_agents_register_provider' ) ) {
 
-	function wp_agents_register_provider( string $name, callable $callback ): void {
-		Wp_Agents_Services_Provider_Manager::register( $name, $callback );
+	function wp_agents_register_provider( string $id, callable $callback ): void {
+		Wp_Agents_Services_Provider_Manager::register( $id, $callback );
 	}
 
 	require_once __DIR__ . '/inc/providers.php';
