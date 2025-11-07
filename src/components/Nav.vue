@@ -24,10 +24,6 @@ const links = {
     to: '/',
     title: 'Agents'
   },
-  tools: {
-    to: '/tools',
-    title: 'Tools'
-  },
   settings: {
     to: '/settings',
     title: 'Settings'

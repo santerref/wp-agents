@@ -2,13 +2,13 @@
 
 class Wp_Agents_System_Rest {
 
-	public static function register(): void {
+	public function register(): void {
 		register_rest_route(
 			'wp-agents/v1',
 			'/chat',
 			array(
 				'methods'             => 'POST',
-				'callback'            => array( self::class, 'chat' ),
+				'callback'            => array( $this, 'chat' ),
 				'permission_callback' => '__return_true',
 			)
 		);
@@ -18,14 +18,14 @@ class Wp_Agents_System_Rest {
 			'/agents',
 			array(
 				'methods'             => 'GET',
-				'callback'            => array( self::class, 'agents' ),
+				'callback'            => array( $this, 'agents' ),
 				'permission_callback' => '__return_true',
 			)
 		);
 	}
 
-	public static function chat( \WP_REST_Request $request ) {
-		$agent = Wp_Agents_Services_Agent_Manager::get( $request->get_param( 'agent' ) );
+	public function chat( \WP_REST_Request $request ) {
+		$agent = wp_agents_agent_manager()->get( $request->get_param( 'agent' ) );
 
 		$message  = $request->get_param( 'message' );
 		$response = $agent
@@ -42,7 +42,7 @@ class Wp_Agents_System_Rest {
 		);
 	}
 
-	public static function agents() {
+	public function agents() {
 		$agents = array();
 
 		foreach ( wp_agents_all() as $agent ) {

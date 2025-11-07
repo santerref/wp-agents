@@ -20,6 +20,8 @@ abstract class Wp_Agents_Agent_Abstract {
 	);
 
 	public function __construct( array $definition ) {
+		$definition = apply_filters( 'wp_agents_agent_definition', $definition );
+
 		$this->definition = array_merge(
 			$this->definition,
 			$definition
@@ -65,6 +67,10 @@ abstract class Wp_Agents_Agent_Abstract {
 		return $this->definition['file'];
 	}
 
+	public function is_enabled(): bool {
+		return wp_agents_agent_manager()->is_enabled( $this->definition['id'] );
+	}
+
 	public function get_memory( string $session_id ): ?Wp_Agents_Memory_Abstract {
 		if ( $this->definition['memory'] ) {
 			$memory_class = $this->definition['memory'];
@@ -85,6 +91,7 @@ abstract class Wp_Agents_Agent_Abstract {
 			'hooks'       => $this->definition['hooks'],
 			'tools'       => $this->definition['tools'],
 			'version'     => $this->definition['version'],
+			'enabled'     => $this->is_enabled(),
 		);
 	}
 }

@@ -2,10 +2,6 @@
   <table class="wp-list-table widefat plugins">
     <thead>
     <tr>
-      <td id="cb" class="manage-column column-cb check-column">
-        <input id="select-all" type="checkbox">
-        <label for="select-all"><span class="tw:sr-only">Select All</span></label>
-      </td>
       <th scope="col" id="name" class="manage-column column-name column-primary">Agent</th>
       <th scope="col" id="description" class="manage-column column-description">Description</th>
       <th scope="col" id="description" class="manage-column column-description">Provider</th>
@@ -15,16 +11,15 @@
     </thead>
     <tbody>
     <tr v-for="agent in agents" :id="agent.id">
-      <th scope="row" class="check-column tw:pl-[6px]">
-        <label class="label-covers-full-cell"
-               :for="`checkbox_${agent.id}`"><span
-            class="tw:sr-only">Select {{ agent.name }}</span>
-        </label>
-        <input type="checkbox" class="tw:mt-[4px] tw:ml-[8px]" name="checked[]"
-               :value="agent.id"
-               :id="`checkbox_${agent.id}`">
-      </th>
-      <td class="tw:p-[10px]">{{ agent.name }}</td>
+      <td class="tw:p-[10px]">
+        <span class="tw:mb-1 tw:inline-block">{{ agent.name }}</span>
+        <div class="row-actions visible">
+          <span class="activate">
+            <button
+                class="tw:border-none tw:bg-transparent tw:p-0 tw:m-0 tw:cursor-pointer tw:text-blue-wp">Activate</button>
+          </span>
+        </div>
+      </td>
       <td class="tw:p-[10px]">
         <div class="plugin-description">
           <p>{{ agent.description }}</p>
@@ -34,7 +29,7 @@
         </div>
       </td>
       <td class="tw:p-[10px]">
-        OpenAI
+        OpenAI ({{ agent.model }})
       </td>
       <td v-html="agent.tools.join(',<br>')"></td>
       <td v-html="agent.hooks.join(',<br>')"></td>
@@ -45,8 +40,9 @@
 
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
+import type {Agent} from "../types";
 
-const agents = ref([])
+const agents = ref<Agent[]>([])
 
 onMounted(async () => {
   const res = await fetch('/wp-json/wp-agents/v1/agents', {
@@ -54,4 +50,12 @@ onMounted(async () => {
   })
   agents.value = await res.json()
 })
+
+const activate = (agent: Agent) => {
+
+}
+
+const deactivate = (agent: Agent) => {
+
+}
 </script>

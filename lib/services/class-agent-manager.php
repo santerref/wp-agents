@@ -2,29 +2,46 @@
 
 class Wp_Agents_Services_Agent_Manager {
 
-	protected static array $agents = array();
+	protected array $agents = array();
 
-	public static function register( array $definition ): void {
-		self::$agents[ $definition['id'] ] = new Wp_Agents_Agent_Base( $definition );
+	public function register( array $definition ): void {
+		$this->agents[ $definition['id'] ] = new Wp_Agents_Agent_Base( $definition );
 	}
 
-	public static function get( string $id ): Wp_Agents_Agent_Abstract|WP_Error {
-		if ( ! isset( self::$agents[ $id ] ) ) {
+	public function get( string $id ): Wp_Agents_Agent_Abstract|WP_Error {
+		if ( ! isset( $this->agents[ $id ] ) ) {
 			return new WP_Error(
 				'wp_agents_agent_not_found',
 				"The agent with the name {$id} was not found."
 			);
 		}
 
-		return self::$agents[ $id ];
+		return $this->agents[ $id ];
 	}
 
-
-	public static function all(): array {
-		return static::$agents;
+	public function all(): array {
+		return $this->agents;
 	}
 
-	public static function boot(): void {
+	public function activate( string $id ): void {
+		$enabled_agents        = $this->enabled();
+		$enabled_agents[ $id ] = true;
+		$this->update_enabled( $enabled_agents );
+	}
+
+	public function deactivate( string $id ): void {
+		$enabled_agents        = $this->enabled();
+		$enabled_agents[ $id ] = false;
+		$this->update_enabled( $enabled_agents );
+	}
+
+	public function is_enabled( string $id ): bool {
+		$enabled_agents = $this->enabled();
+
+		return isset( $enabled_agents[ $id ] ) && $enabled_agents[ $id ];
+	}
+
+	public function boot(): void {
 		$agents_directories = array(
 			WP_PLUGIN_DIR . '/wp-agents/core/agents',
 			WP_PLUGIN_DIR . '/wp-agents/installed/agents',
@@ -37,7 +54,7 @@ class Wp_Agents_Services_Agent_Manager {
 					continue;
 				}
 
-				$definition = self::read_definition( $file );
+				$definition = $this->read_definition( $file );
 				if ( empty( $definition['name'] ) ) {
 					continue;
 				}
@@ -60,7 +77,15 @@ class Wp_Agents_Services_Agent_Manager {
 		do_action( 'wp_agents_register_agents' );
 	}
 
-	protected static function read_definition( string $file ): array {
+	protected function enabled(): array {
+		return get_option( 'wp_agents_enabled_agents', array() );
+	}
+
+	protected function update_enabled( array $enabled_agents ): void {
+		update_option( 'wp_agents_enabled_agents', $enabled_agents );
+	}
+
+	protected function read_definition( string $file ): array {
 		$headers = array(
 			'Agent Name'  => 'Agent Name',
 			'Description' => 'Description',
