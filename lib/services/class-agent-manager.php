@@ -48,7 +48,7 @@ class Wp_Agents_Services_Agent_Manager {
 				}
 				$instructions_content = file( $instructions, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
 
-				$definition['instructions'] = trim( $instructions_content ? $instructions_content : '' );
+				$definition['instructions'] = trim( $instructions_content ? implode( "\n", $instructions_content ) : '' );
 				$definition['id']           = $agent_name;
 				$definition['file']         = $file;
 				$definition['directory']    = dirname( $file );

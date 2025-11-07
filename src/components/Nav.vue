@@ -27,6 +27,10 @@ const links = {
   tools: {
     to: '/tools',
     title: 'Tools'
+  },
+  settings: {
+    to: '/settings',
+    title: 'Settings'
   }
 }
 </script>

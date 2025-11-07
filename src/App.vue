@@ -7,7 +7,13 @@
     <Nav/>
 
     <main class="tw:clear-left">
-      <RouterView/>
+      <RouterView v-slot="{Component}">
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <component :is="Component"/>
+          </keep-alive>
+        </transition>
+      </RouterView>
     </main>
   </Layout>
 </template>
@@ -17,3 +23,15 @@ import Layout from "./components/Layout.vue";
 import {RouterView} from "vue-router";
 import Nav from "./components/Nav.vue";
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
