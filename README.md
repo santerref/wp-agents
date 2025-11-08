@@ -65,7 +65,7 @@ curl --location 'https://example.com/wp-json/wp-agents/v1/chat' \
 
 ## Demo
 
-https://github.com/santerref/wp-agents-demo
+We now provide an admin UI that lists all registered agents. From there, you can activate the built-in **Post Taxonomy Agent** to see a working example in action.
 
 ## Roadmap
 
