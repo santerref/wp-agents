@@ -67,6 +67,8 @@ curl --location 'https://example.com/wp-json/wp-agents/v1/chat' \
 
 We now provide an admin UI that lists all registered agents. From there, you can activate the built-in **Post Taxonomy Agent** to see a working example in action.
 
+<img width="2826" height="1162" alt="Screenshot 2025-11-07 at 8 34 29 PM" src="https://github.com/user-attachments/assets/479cc0d9-b1eb-48b4-bc9b-57bf645a7543" />
+
 ## Roadmap
 
 - **Workflows:** Introduce workflows to connect and orchestrate multiple agents for complex, multi-step tasks.
