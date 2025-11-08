@@ -6,14 +6,14 @@ class Wp_Agents_System_Agent_Runner {
 
 	protected Wp_Agents_Providers_Interface $provider;
 
-	protected Wp_Agents_Llm_Abstract $agent;
+	protected Wp_Agents_Agent_Abstract $agent;
 
 	protected ?string $session_id = null;
 
-	public function __construct( string $input, Wp_Agents_Llm_Abstract $agent ) {
+	public function __construct( string $input, Wp_Agents_Agent_Abstract $agent ) {
 		$this->input    = $input;
 		$this->agent    = $agent;
-		$this->provider = Wp_Agents_Services_Provider_Manager::get( $agent->get_provider() );
+		$this->provider = wp_agents_provider_manager()->get( $agent->get_provider() );
 	}
 
 	public function with_session( ?string $session_id ): static {

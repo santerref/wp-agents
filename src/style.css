@@ -1,0 +1,11 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(tw) important;
+@import "tailwindcss/utilities.css" layer(utilities) prefix(tw)  important;
+
+@theme {
+    --color-blue-wp: #2271b1;
+}
+
+.toplevel_page_wp-agents #wpcontent {
+    padding-left: 0;
+}

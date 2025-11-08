@@ -29,7 +29,7 @@ wp plugin activate wp-agents
 
 ## REST API
 
-Each agent can be accessed programmatically through the WordPress REST API. 
+Each agent can be accessed programmatically through the WordPress REST API.
 
 This allows external systems or front-end applications to send a message to any registered agent and receive the model’s response in JSON format.
 
@@ -65,7 +65,9 @@ curl --location 'https://example.com/wp-json/wp-agents/v1/chat' \
 
 ## Demo
 
-https://github.com/santerref/wp-agents-demo
+We now provide an admin UI that lists all registered agents. From there, you can activate the built-in **Post Taxonomy Agent** to see a working example in action.
+
+<img width="2826" height="1162" alt="Screenshot 2025-11-07 at 8 34 29 PM" src="https://github.com/user-attachments/assets/479cc0d9-b1eb-48b4-bc9b-57bf645a7543" />
 
 ## Roadmap
 
