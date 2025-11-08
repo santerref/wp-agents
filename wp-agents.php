@@ -24,6 +24,7 @@ if ( ! defined( 'WP_AGENTS_PLUGIN_URL' ) ) {
 require_once 'autoload.php';
 require_once 'inc/assets.php';
 require_once 'inc/admin.php';
+require_once 'inc/services.php';
 
 if ( ! function_exists( 'wp_agents_install' ) ) {
 
@@ -33,34 +34,6 @@ if ( ! function_exists( 'wp_agents_install' ) ) {
 	}
 
 	register_activation_hook( __FILE__, 'wp_agents_install' );
-
-}
-
-if ( ! function_exists( 'wp_agents_rest' ) ) {
-
-	function wp_agents_rest() {
-		static $rest;
-
-		if ( ! isset( $rest ) ) {
-			$rest = new Wp_Agents_System_Rest();
-		}
-
-		return $rest;
-	}
-
-}
-
-if ( ! function_exists( 'wp_agents_agent_manager' ) ) {
-
-	function wp_agents_agent_manager() {
-		static $agent_manager;
-
-		if ( ! isset( $agent_manager ) ) {
-			$agent_manager = new Wp_Agents_Services_Agent_Manager();
-		}
-
-		return $agent_manager;
-	}
 
 }
 
@@ -75,7 +48,7 @@ if ( ! function_exists( 'wp_agents_register' ) ) {
 if ( ! function_exists( 'wp_agents_register_provider' ) ) {
 
 	function wp_agents_register_provider( string $id, callable $callback ): void {
-		Wp_Agents_Services_Provider_Manager::register( $id, $callback );
+		wp_agents_provider_manager()->register( $id, $callback );
 	}
 
 	require_once __DIR__ . '/inc/providers.php';
@@ -98,11 +71,24 @@ if ( ! function_exists( 'wp_agents_all' ) ) {
 
 }
 
+if ( ! function_exists( 'wp_agents_register_tool' ) ) {
+
+	function wp_agents_register_tool( string $group, array $definition, callable $callback ): void {
+		wp_agents_tool_manager()->register(
+			$group,
+			$definition,
+			$callback
+		);
+	}
+
+}
+
 add_action(
 	'plugins_loaded',
 	function () {
-		add_action( 'init', array( Wp_Agents_Services_Provider_Manager::class, 'boot' ) );
-		add_action( 'init', array( wp_agents_agent_manager(), 'boot' ) );
+		wp_agents_provider_manager()->boot();
+		wp_agents_tool_manager()->boot();
+		wp_agents_agent_manager()->boot();
 		add_action( 'rest_api_init', array( wp_agents_rest(), 'register' ) );
 	}
 );
@@ -113,7 +99,7 @@ add_action(
 		foreach ( wp_agents_all() as $agent ) {
 			$file = $agent->get_file();
 
-			if ( $file ) {
+			if ( $file && $agent->is_enabled() ) {
 				require_once $file;
 			}
 		}

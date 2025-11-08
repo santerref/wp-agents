@@ -10,13 +10,19 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="agent in agents" :id="agent.id">
-      <td class="tw:p-[10px]">
-        <span class="tw:mb-1 tw:inline-block">{{ agent.name }}</span>
+    <tr v-for="agent in agents" :id="agent.id"
+        :class="{'tw:bg-[#f0f6fc] tw:shadow-[inset_0_-1px_0_rgba(0,0,0,.1)]': agent.enabled}">
+      <td class="tw:p-[10px] tw:border-l-4"
+          :class="{'tw:border-l-transparent': !agent.enabled, 'tw:border-l-[#72aee6]': agent.enabled}">
+        <span class="tw:text-[14px] tw:mb-1 tw:inline-block" :class="{'tw:font-semibold':agent.enabled}">{{ agent.name }}</span>
         <div class="row-actions visible">
           <span class="activate">
             <button
-                class="tw:border-none tw:bg-transparent tw:p-0 tw:m-0 tw:cursor-pointer tw:text-blue-wp">Activate</button>
+                @click.prevent="toggle(agent)"
+                class="tw:border-none tw:bg-transparent tw:p-0 tw:m-0 tw:cursor-pointer tw:text-blue-wp">
+              <span v-if="agent.enabled">Deactivate</span>
+              <span v-else>Activate</span>
+            </button>
           </span>
         </div>
       </td>
@@ -45,17 +51,26 @@ import type {Agent} from "../types";
 const agents = ref<Agent[]>([])
 
 onMounted(async () => {
-  const res = await fetch('/wp-json/wp-agents/v1/agents', {
+  const response = await fetch('/wp-json/wp-agents/v1/agents', {
     credentials: 'same-origin'
   })
-  agents.value = await res.json()
+  agents.value = await response.json()
 })
 
-const activate = (agent: Agent) => {
+const toggle = async (agent: Agent) => {
+  const action = agent.enabled ? 'deactivate' : 'activate'
 
-}
+  const result = await fetch(`/wp-json/wp-agents/v1/agents/${agent.id}/${action}`, {
+    method: 'POST',
+    credentials: 'same-origin'
+  }).then(response => response.json())
 
-const deactivate = (agent: Agent) => {
-
+  const index = agents.value.findIndex(item => item.id === agent.id)
+  if (index !== -1) {
+    agents.value[index] = {
+      ...agents.value[index],
+      enabled: result.enabled
+    }
+  }
 }
 </script>

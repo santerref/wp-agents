@@ -43,8 +43,8 @@ class Wp_Agents_Services_Agent_Manager {
 
 	public function boot(): void {
 		$agents_directories = array(
-			WP_PLUGIN_DIR . '/wp-agents/core/agents',
-			WP_PLUGIN_DIR . '/wp-agents/installed/agents',
+			WP_PLUGIN_DIR . '/wp-agents/repository/core/agents',
+			WP_PLUGIN_DIR . '/wp-agents/repository/installed/agents',
 		);
 
 		foreach ( $agents_directories as $directory ) {

@@ -3,7 +3,7 @@
 Agent Name: Post Taxonomy Agent
 Description: Automatically assign a category and tags to a post based on the content.
 Version: 1.0.0
-Tools: wordpress.ensure_category, wordpress.ensure_tag
+Tools: wordpress.ensure_category, wordpress.ensure_tags
 Hooks: action.post_updated
 */
 
