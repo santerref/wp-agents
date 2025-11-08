@@ -68,7 +68,7 @@ const toggle = async (agent: Agent) => {
   const index = agents.value.findIndex(item => item.id === agent.id)
   if (index !== -1) {
     agents.value[index] = {
-      ...agents.value[index],
+      ...agents.value[index] as Agent,
       enabled: result.enabled
     }
   }
